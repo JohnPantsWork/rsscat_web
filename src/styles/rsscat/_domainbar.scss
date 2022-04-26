@@ -1,0 +1,15 @@
+.domainbar {
+  display: flex;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  width: 100%;
+  height: 30px;
+
+  input[type='checkbox'] {
+    width: 10%;
+    height: 100%;
+  }
+  label {
+    width: 90%;
+    height: 100%;
+  }
+}

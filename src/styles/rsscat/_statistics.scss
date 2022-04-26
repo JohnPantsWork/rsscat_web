@@ -1,0 +1,18 @@
+.statistics {
+  margin-left: 10rem;
+  height: auto;
+  .top {
+    display: flex;
+    padding: 2rem 0rem 0rem 2rem;
+    height: 8rem;
+    background-color: $color_background;
+    border-bottom: 1px solid $color_normal;
+
+    h1 {
+      color: $color_title;
+    }
+  }
+  .bottom {
+    display: flex;
+  }
+}

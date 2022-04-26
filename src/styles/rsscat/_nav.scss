@@ -1,0 +1,64 @@
+.nav {
+  display: flex;
+  width: 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $color_background;
+  height: 100vh;
+  flex-direction: column;
+  border-right: 1px solid $color_normal;
+  section.iconArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    img {
+      width: 80%;
+    }
+    h2 {
+      color: $color_title;
+    }
+  }
+  section.navArea {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul {
+      list-style-type: none;
+      li {
+        margin: 1rem 0rem;
+        button {
+          text-decoration: none;
+          color: $color_important_unactive;
+          font-size: 1.2rem;
+          font-weight: 700;
+          border: none;
+          letter-spacing: 0.2rem;
+          background-color: transparent;
+        }
+        button:hover {
+          cursor: pointer;
+          color: $color_important;
+        }
+      }
+    }
+  }
+  section.userArea {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    button.settingBtn {
+      margin: 1rem 1rem;
+    }
+    button.signoutBtn {
+      border: none;
+      font-size: large;
+      height: 3rem;
+    }
+    button.signoutBtn:hover {
+      cursor: pointer;
+    }
+  }
+}
