@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  background-color: $color_background;
+  align-items: center;
+  height: 8rem;
+  padding: 0rem 10%;
+  color: $color_title;
+  .icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  nav {
+    margin-left: auto;
+
+    ul {
+      display: flex;
+      li {
+        margin: 0 1rem;
+        list-style: none;
+        a {
+          text-decoration: none;
+          font-size: 1rem;
+        }
+        a:visited {
+          color: unset;
+        }
+        a:hover {
+          color: $color_important;
+        }
+      }
+      li.signin {
+        border: 1px solid $color_title;
+        border-radius: 3px;
+        padding: 0.1rem 1rem;
+      }
+      li.signup {
+        background-color: $color_primary;
+        color: $color_important;
+        border-radius: 3px;
+        padding: 0.1rem 1rem;
+      }
+    }
+  }
+}
