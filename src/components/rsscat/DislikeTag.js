@@ -13,7 +13,6 @@ const DislikeTag = ({ tagId, tagName, setDislikedTags }) => {
     if (tags === undefined) {
       tags = [];
     }
-    console.log(`#--------------------[tags]#\n`, tags);
     setDislikedTags(tags);
   };
   return (

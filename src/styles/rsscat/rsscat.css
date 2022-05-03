@@ -1,3 +1,4 @@
+@import url(/Users/aming/github/rsscat_web/src/styles/loading.css/dist/loading.css);
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +10,7 @@
 .rsscat {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .nav {
@@ -507,12 +509,12 @@
   display: none;
 }
 
-.hots {
+.store {
   margin-left: 10rem;
   height: auto;
 }
 
-.hots .top {
+.store .top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -522,14 +524,56 @@
   border-bottom: 1px solid #bfbab7;
 }
 
-.hots .top h1 {
+.store .top h1 {
   color: #333333;
 }
 
-.hots .bottom {
+.store .bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.store .bottom .storeBottomLeft {
+  border: 1px solid black;
+  width: 25rem;
+  height: 80vh;
+  overflow: scroll;
+}
+
+.store .bottom .storeBottomLeft .storeList .storeItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.store .bottom .storeBottomLeft .storeList .storeItem img {
+  width: 100px;
+}
+
+.store .bottom .storeBottomRight .missionInfo .storeMission div .g-container {
+  width: 10rem;
+  height: 1rem;
+  border-radius: 3px;
+  background: #eee;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.store .bottom .storeBottomRight .missionInfo .storeMission div .g-container .g-progress {
+  height: inherit;
+  border-radius: 3px 0 0 3px;
+  background: #0f0;
 }
 
 .statistics {
@@ -555,6 +599,58 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 60rem;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 2rem;
+  height: 100%;
+}
+
+.statistics .bottom .statisticsBottomLeft {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 100%;
+  width: 50%;
+}
+
+.statistics .bottom .statisticsBottomRight {
+  height: 100%;
+  width: 50%;
+}
+
+.statistics .bottom .statisticsBottomRight .tagController {
+  height: 70vh;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.statistics .bottom .statisticsBottomRight .tagController .tag p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.statistics .bottom .statisticsBottomRight .tagController .tag p span {
+  padding: 0 1rem;
+  width: 2rem;
+  background-color: #ffd26d;
+}
+
+.statistics .bottom .statisticsBottomRight .tagController .tag p span:hover {
+  cursor: pointer;
+  color: #f0b1b8;
 }
 
 .statistics {
@@ -579,6 +675,26 @@
 
 .domainbar label {
   width: 90%;
+  height: 100%;
+}
+
+.cat {
+  position: fixed;
+  width: 10rem;
+  right: 3rem;
+  bottom: 2rem;
+}
+
+.cat div.catOut {
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+}
+
+.cat img {
+  width: 100%;
   height: 100%;
 }
 /*# sourceMappingURL=rsscat.css.map */

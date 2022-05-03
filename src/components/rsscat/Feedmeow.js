@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Rsscard from './Rsscard';
 import LikedTag from './LikedTag';
-import DislikeTag from './DislikeTag';
+// import DislikeTag from './DislikeTag';
 import axios from 'axios';
 import { API_HOST } from '../../assets/constants';
 import { v4 as uuidv4 } from 'uuid';
+import { missionContext } from '../../pages/Rsscat';
 
-import icon from '../../assets/images/PlayfulCat.gif';
 let explorepage = 0;
 let feedpage = 0;
 
@@ -14,33 +14,34 @@ const Feedmeow = () => {
   const [rssCards, setRssCard] = useState([]);
   const [rssData, setRssData] = useState([]);
   const [likedTags, setLikedTags] = useState([]);
-  const [dislikedTags, setDislikedTags] = useState([]);
+  // const [dislikedTags, setDislikedTags] = useState([]);
+  const { missionEvent } = useContext(missionContext);
 
-  const getTags = async () => {
-    const result = await axios({
-      withCredentials: true,
-      method: 'GET',
-      url: API_HOST + `/api/1.0/tag`,
-    });
-    return result.data.data;
-  };
+  // const getTags = async () => {
+  //   const result = await axios({
+  //     withCredentials: true,
+  //     method: 'GET',
+  //     url: API_HOST + `/api/1.0/tag`,
+  //   });
+  //   return result.data.data;
+  // };
 
-  const init = async () => {
-    const tagData = await getTags();
-    const liketags = tagData.likeTags;
-    const disliketags = tagData.dislikeTags;
+  // const init = async () => {
+  //   const tagData = await getTags();
+  //   const liketags = tagData.likeTags;
+  // const disliketags = tagData.dislikeTags;
 
-    if (liketags === null || liketags === undefined) {
-      setLikedTags([]);
-    } else {
-      setLikedTags(liketags);
-    }
-    if (disliketags === null || disliketags === undefined) {
-      setDislikedTags([]);
-    } else {
-      setDislikedTags(disliketags);
-    }
-  };
+  // if (liketags === null || liketags === undefined) {
+  //   setLikedTags([]);
+  // } else {
+  //   setLikedTags(liketags);
+  // }
+  // if (disliketags === null || disliketags === undefined) {
+  //   setDislikedTags([]);
+  // } else {
+  //   setDislikedTags(disliketags);
+  // }
+  // };
 
   const getExploreRss = async () => {
     setRssCard([]);
@@ -60,12 +61,12 @@ const Feedmeow = () => {
     }
     setRssData(result.data.data);
     explorepage += 1;
+    missionEvent(5, 2);
   };
 
   const getFeedRss = async () => {
     setRssCard([]);
-    let result;
-    result = await axios({
+    let result = await axios({
       withCredentials: true,
       url: API_HOST + `/api/1.0/rss/user?paging=${feedpage}`,
       method: 'GET',
@@ -90,7 +91,7 @@ const Feedmeow = () => {
   };
 
   useEffect(() => {
-    init();
+    // init();
     getExploreRss();
   }, []);
 
@@ -103,7 +104,7 @@ const Feedmeow = () => {
     <div className="feedmeow">
       <div className="top">
         <section className="head">
-          <h1>文字餵食</h1>
+          <h1>RSS文章</h1>
         </section>
         <section className="control">
           <button onClick={getFeedRss}>你的飼料</button>
@@ -116,23 +117,22 @@ const Feedmeow = () => {
       <div className="bottom">
         <section className="rsscards">
           {rssCards.map((card) => {
-            return <Rsscard key={uuidv4()} card={card} setLikedTags={setLikedTags} setDislikedTags={setDislikedTags} />;
+            return <Rsscard key={uuidv4()} card={card} /*setLikedTags={setLikedTags} setDislikedTags={setDislikedTags}*/ />;
           })}
         </section>
         <section className="rsstags">
-          <h4>Liked</h4>
+          {/* <h4>Liked</h4> */}
           <div className="likedtags">
-            {likedTags.map((tag) => {
+            {/* {likedTags.map((tag) => {
               return <LikedTag key={uuidv4()} type={'rss'} tagId={tag.id} tagName={tag.tag_name} setLikedTags={setLikedTags} />;
-            })}
+            })} */}
           </div>
-          <h4>Disliked</h4>
+          {/* <h4>Disliked</h4>
           <div className="dislikedtags">
             {dislikedTags.map((tag) => {
               return <DislikeTag key={uuidv4()} type={'rss'} tagId={tag.id} tagName={tag.tag_name} setDislikedTags={setDislikedTags} />;
             })}
-          </div>
-          <img className="feedCat" src={icon} alt={'icon'} />
+          </div> */}
         </section>
       </div>
     </div>

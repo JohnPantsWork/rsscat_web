@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Newscard from './Newscard';
 import LikedTag from './LikedTag';
-import DislikeTag from './DislikeTag';
+// import DislikeTag from './DislikeTag';
 import axios from 'axios';
 import { API_HOST } from '../../assets/constants';
 import { v4 as uuidv4 } from 'uuid';
+import { missionContext } from '../../pages/Rsscat';
 
-import icon from '../../assets/images/PlayfulCat.gif';
 let explorepage = 0;
 let feedpage = 0;
 
@@ -14,33 +14,34 @@ const News = () => {
   const [newsCards, setNewsCard] = useState([]);
   const [newsData, setNewsData] = useState([]);
   const [likedTags, setLikedTags] = useState([]);
-  const [dislikedTags, setDislikedTags] = useState([]);
+  // const [dislikedTags, setDislikedTags] = useState([]);
+  const { missionEvent } = useContext(missionContext);
 
-  const getTags = async () => {
-    const result = await axios({
-      withCredentials: true,
-      method: 'GET',
-      url: API_HOST + `/api/1.0/tag`,
-    });
-    return result.data.data;
-  };
+  // const getTags = async () => {
+  //   const result = await axios({
+  //     withCredentials: true,
+  //     method: 'GET',
+  //     url: API_HOST + `/api/1.0/tag`,
+  //   });
+  //   return result.data.data;
+  // };
 
-  const init = async () => {
-    const tagData = await getTags();
-    const liketags = tagData.likeTags;
-    const disliketags = tagData.dislikeTags;
+  // const init = async () => {
+  //   const tagData = await getTags();
+  //   const liketags = tagData.likeTags;
+  // const disliketags = tagData.dislikeTags;
 
-    if (liketags === null || liketags === undefined) {
-      setLikedTags([]);
-    } else {
-      setLikedTags(liketags);
-    }
-    if (disliketags === null || disliketags === undefined) {
-      setDislikedTags([]);
-    } else {
-      setDislikedTags(disliketags);
-    }
-  };
+  // if (liketags === null || liketags === undefined) {
+  //   setLikedTags([]);
+  // } else {
+  //   setLikedTags(liketags);
+  // }
+  // if (disliketags === null || disliketags === undefined) {
+  //   setDislikedTags([]);
+  // } else {
+  //   setDislikedTags(disliketags);
+  // }
+  // };
 
   const getExploreNews = async () => {
     setNewsCard([]);
@@ -60,6 +61,7 @@ const News = () => {
     }
     setNewsData(result.data.data);
     explorepage += 1;
+    missionEvent(6, 2);
   };
 
   const getFeedNews = async () => {
@@ -90,7 +92,7 @@ const News = () => {
   };
 
   useEffect(() => {
-    init();
+    // init();
     getExploreNews();
   }, []);
 
@@ -102,7 +104,7 @@ const News = () => {
     <div className="news">
       <div className="top">
         <section className="head">
-          <h1>頭條新聞</h1>
+          <h1>新聞</h1>
         </section>
         <section className="control">
           <button onClick={getFeedNews}>你的新聞</button>
@@ -115,23 +117,23 @@ const News = () => {
       <div className="bottom">
         <section className="newscards">
           {newsCards.map((card) => {
-            return <Newscard key={uuidv4()} card={card} setLikedTags={setLikedTags} setDislikedTags={setDislikedTags} />;
+            return <Newscard key={uuidv4()} card={card} /*setLikedTags={setLikedTags} setDislikedTags={setDislikedTags}*/ />;
           })}
         </section>
         <section className="newstags">
-          <h4>Liked</h4>
+          {/* <h4>Liked</h4> */}
           <div className="likedtags">
-            {likedTags.map((tag) => {
+            {/* {likedTags.map((tag) => {
               return <LikedTag key={uuidv4()} type={'news'} tagId={tag.id} tagName={tag.tag_name} setLikedTags={setLikedTags} />;
-            })}
+            })} */}
           </div>
-          <h4>Disliked</h4>
+          {/* <h4>Disliked</h4>
           <div className="dislikedtags">
             {dislikedTags.map((tag) => {
               return <DislikeTag key={uuidv4()} type={'news'} tagId={tag.id} tagName={tag.tag_name} setDislikedTags={setDislikedTags} />;
             })}
           </div>
-          <img className="feedCat" src={icon} alt={'icon'} />
+          <img className="feedCat" src={icon} alt={'icon'} /> */}
         </section>
       </div>
     </div>

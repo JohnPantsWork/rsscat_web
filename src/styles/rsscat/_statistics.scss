@@ -14,5 +14,41 @@
   }
   .bottom {
     display: flex;
+    width: 60rem;
+    justify-content: space-evenly;
+    padding: 2rem;
+    height: 100%;
+    .statisticsBottomLeft {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 50%;
+    }
+    .statisticsBottomRight {
+      height: 100%;
+      width: 50%;
+      .tagController {
+        height: 70vh;
+        overflow: scroll;
+        border: 1px solid black;
+
+        .tag {
+          p {
+            display: flex;
+            justify-content: space-between;
+            span {
+              padding: 0 1rem;
+              width: 2rem;
+              background-color: $color_primary;
+            }
+            span:hover {
+              cursor: pointer;
+              color: $color_important_unactive;
+            }
+          }
+        }
+      }
+    }
   }
 }

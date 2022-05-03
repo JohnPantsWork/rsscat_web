@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Domainbar from './Domainbar';
 
 const Rssmanager = () => {
-  console.log(`#Rssmanager rerender#`);
   // realtime list state
   const [likedDomains, setLikedDomains] = useState([]);
   const [dislikedDomains, setDislikedDomains] = useState([]);
@@ -19,8 +18,25 @@ const Rssmanager = () => {
   const [checkedLikeDomains, setCheckedLikedDomains] = useState([]);
   const [checkedDislikedDomains, setCheckedDislikedDomains] = useState([]);
 
+  const [rssRegisterDomain, setRssRegisterDomain] = useState([]);
+
+  const getRssDomain = (e) => {
+    const registerDomain = e.target.value;
+    setRssRegisterDomain(registerDomain);
+  };
+
+  const postNewRss = async () => {
+    const newRssResult = await axios({
+      withCredentials: true,
+      method: 'POST',
+      url: `${API_HOST}/api/1.0/rss`,
+      data: {
+        url: rssRegisterDomain,
+      },
+    });
+  };
+
   const getDomain = async () => {
-    console.log(`#getDomain#`);
     const result = await axios({
       withCredentials: true,
       method: 'GET',
@@ -116,7 +132,7 @@ const Rssmanager = () => {
     <div className="rssmanager">
       <div className="top">
         <section className="head">
-          <h1>糧食來源</h1>
+          <h1>RSS來源</h1>
         </section>
       </div>
       <div className="bottom">
@@ -181,6 +197,11 @@ const Rssmanager = () => {
               );
             }
           })}
+        </section>
+        <section className="rssRegister">
+          <h2>提交新的RSS來源</h2>
+          <input type="text" onChange={getRssDomain} />
+          <button onClick={postNewRss}>申請</button>
         </section>
       </div>
     </div>

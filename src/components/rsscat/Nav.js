@@ -21,7 +21,7 @@ const Nav = ({ setContent }) => {
                 setContent('feedmeow');
               }}
             >
-              餵喵
+              RSS文章
             </button>
           </li>
           <li>
@@ -30,7 +30,7 @@ const Nav = ({ setContent }) => {
                 setContent('rssmanager');
               }}
             >
-              來源
+              RSS來源
             </button>
           </li>
           <li>
@@ -42,15 +42,6 @@ const Nav = ({ setContent }) => {
               新聞
             </button>
           </li>
-          {/* <li>
-            <button
-              onClick={() => {
-                setContent('hots');
-              }}
-            >
-              熱門
-            </button>
-          </li>
           <li>
             <button
               onClick={() => {
@@ -59,7 +50,16 @@ const Nav = ({ setContent }) => {
             >
               統計
             </button>
-          </li> */}
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                setContent('store');
+              }}
+            >
+              兌換商店
+            </button>
+          </li>
         </ul>
       </section>
       <section className="userArea">
