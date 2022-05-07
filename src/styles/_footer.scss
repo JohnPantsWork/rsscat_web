@@ -1,0 +1,44 @@
+.footer {
+  width: 100%;
+  height: $footer_height_normal;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: $color_text_misc;
+
+  position: sticky;
+  bottom: 0%;
+
+  .footerBox {
+    width: 100%;
+    height: 100%;
+    max-width: $width_boundry_1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .attribute {
+      display: flex;
+      flex-direction: column;
+
+      padding: 8px 16px;
+
+      font-size: $font_size_misc;
+      a {
+        color: $color_main_text;
+      }
+    }
+    .copyright {
+      display: flex;
+      flex-direction: column;
+
+      padding: 8px 16px;
+
+      font-size: $font_size_misc;
+      p {
+        color: $color_main_text;
+      }
+    }
+  }
+}

@@ -11,6 +11,12 @@
     h1 {
       color: $color_title;
     }
+    .statisticsTopRight {
+      display: flex;
+      justify-content: space-evenly;
+      height: 100%;
+      width: 50%;
+    }
   }
   .bottom {
     display: flex;
@@ -18,34 +24,41 @@
     justify-content: space-evenly;
     padding: 2rem;
     height: 100%;
-    .statisticsBottomLeft {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      height: 100%;
-      width: 50%;
-    }
+
+    .statisticsBottomLeft,
     .statisticsBottomRight {
       height: 100%;
-      width: 50%;
+      width: 40%;
       .tagController {
         height: 70vh;
         overflow: scroll;
         border: 1px solid black;
-
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         .tag {
+          display: flex;
+
+          margin-bottom: 1rem;
+          width: 12rem;
+
           p {
             display: flex;
+            text-align: center;
             justify-content: space-between;
-            span {
-              padding: 0 1rem;
-              width: 2rem;
-              background-color: $color_primary;
-            }
-            span:hover {
-              cursor: pointer;
-              color: $color_important_unactive;
-            }
+            border-right: 1px solid black;
+            width: 8rem;
+          }
+          button {
+            margin-left: auto;
+            padding: 0 1rem;
+            width: 4rem;
+            background-color: $color_primary;
+          }
+          button:hover {
+            cursor: pointer;
+            color: $color_important_unactive;
           }
         }
       }

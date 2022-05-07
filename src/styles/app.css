@@ -1,0 +1,999 @@
+@import url(/Users/aming/github/rsscat_web/src/styles/loading.css/dist/loading.css);
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #404040;
+}
+
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fafafa;
+}
+
+.block {
+  margin: 8px 16px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 2px 2px 4px #dddddd;
+          box-shadow: 2px 2px 4px #dddddd;
+  overflow: hidden;
+}
+
+.rwd {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1280px;
+          flex: 0 1 1280px;
+  width: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rwd .leftNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 240px;
+          flex: 0 0 240px;
+  margin: 16px 8px 0 16px;
+}
+
+.rwd .mainInfo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 693.33333px;
+          flex: 0 1 693.33333px;
+  margin: 16px 8px 0 8px;
+}
+
+.rwd .RightNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 346.66667px;
+          flex: 0 1 346.66667px;
+  margin: 16px 16px 0 8px;
+}
+
+@media screen and (max-width: 1024px) {
+  .rwd .leftNav {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 240px;
+            flex: 0 1 240px;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 784px;
+            flex: 0 1 784px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rwd .leftNav {
+    display: none;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 768px;
+            flex: 0 1 768px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
+}
+
+.header {
+  width: 100%;
+  height: 56px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.header .headerBox {
+  max-width: 1280px;
+  height: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1280px;
+          flex: 0 1 1280px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .headerBox div {
+  height: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .headerBox div img {
+  height: inherit;
+  padding: 8px 16px;
+}
+
+.header .headerBox div h1 {
+  padding: 8px;
+  font-size: 1.5rem;
+}
+
+.header .headerBox div .searchBar {
+  padding: 1rem;
+}
+
+.header .headerBox div .searchBar input {
+  width: 250px;
+  height: 2rem;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.header .headerBox nav ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .headerBox nav ul li {
+  padding: 8px 16px;
+}
+
+.header .headerBox nav ul li a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header .headerBox div .searchBar {
+    display: none;
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 112px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #525252;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0%;
+}
+
+.footer .footerBox {
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer .footerBox .attribute {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+}
+
+.footer .footerBox .attribute a {
+  color: #f9f9f9;
+}
+
+.footer .footerBox .copyright {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+}
+
+.footer .footerBox .copyright p {
+  color: #f9f9f9;
+}
+
+.homePage {
+  width: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.homePage .showcase {
+  width: inherit;
+  height: 80vh;
+}
+
+.homePage .show1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("../assets/svg/Leave-100s-1440px_green.svg");
+  background-size: auto;
+}
+
+.homePage .show1 h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #090909;
+}
+
+.homePage .show1 h3 {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.5rem;
+  color: #090909;
+}
+
+.homePage .show1 button {
+  width: 10rem;
+  height: 3rem;
+  margin-top: 30px;
+  background-color: #ffb703;
+}
+
+@media screen and (min-width: 768px) {
+  .home .show1 h3 br {
+    display: none;
+    /* hide the BR tag for wider screens (i.e. disable the line break) */
+  }
+  .home .show1 button {
+    width: 30rem;
+  }
+}
+
+.signPage {
+  width: 100vw;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.signPage h1 {
+  color: #090909;
+}
+
+.signPage h3 {
+  color: #525252;
+  text-align: center;
+  font-size: small;
+}
+
+.signPage .oauth {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 16px;
+}
+
+.signPage .oauth .facebook {
+  width: 20rem !important;
+  height: 2rem !important;
+  border: 1px solid #525252;
+  border-radius: 2px;
+  -webkit-box-shadow: 4px 4px 4px #cccccc;
+          box-shadow: 4px 4px 4px #cccccc;
+  background-color: lightskyblue;
+}
+
+.signPage .oauth .facebook button {
+  background-color: transparent;
+  border: none;
+  color: aliceblue;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  font-size: small;
+}
+
+.signPage .oauth .facebook button:hover,
+.signPage .oauth .google button:hover {
+  cursor: pointer;
+}
+
+.signPage .oauth .google {
+  width: 20rem !important;
+  height: 2rem !important;
+  border: 1px solid #525252;
+  border-radius: 2px;
+  -webkit-box-shadow: 4px 4px 4px #cccccc;
+          box-shadow: 4px 4px 4px #cccccc;
+  background-color: lightcoral;
+}
+
+.signPage .oauth .google button {
+  background-color: transparent;
+  border: none;
+  color: aliceblue;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  font-size: small;
+}
+
+.signPage .signbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signPage .signbox h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.signPage .signbox nav {
+  width: 100%;
+}
+
+.signPage .signbox nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 100%;
+}
+
+.signPage .signbox nav ul li {
+  width: 50%;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.signPage .signbox nav ul li.selected {
+  background-color: #ffb703;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.signPage .signbox .signContent {
+  border: 3px solid #ffb703;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.signPage .signbox .signContent .signin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signPage .signbox .signContent .signin form {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signPage .signbox .signContent .signin div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.signPage .signbox .signContent .signin div button {
+  width: 100%;
+  height: 3rem;
+}
+
+.signPage .signbox .signContent .signin img {
+  width: 25%;
+}
+
+.signPage .signbox .signContent .signup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signPage .signbox .signContent .signup form {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signPage .signbox .signContent .signup div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.signPage .signbox .signContent .signup div button {
+  width: 100%;
+  height: 3rem;
+}
+
+.signPage .signbox .signContent .signup img {
+  width: 25%;
+}
+
+@media screen and (max-height: 768px) {
+  .sign {
+    height: 100vh;
+  }
+}
+
+.rssPage {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.navigationBlock {
+  margin: 8px 16px;
+}
+
+.navigationBlock nav ul {
+  list-style: none;
+}
+
+.navigationBlock nav ul li {
+  padding: 8px 16px;
+  color: #242424;
+  letter-spacing: 0.2rem;
+}
+
+.navigationBlock nav ul li img {
+  width: 16px;
+  margin-right: 16px;
+}
+
+.navigationBlock nav ul li a {
+  text-decoration: none;
+}
+
+.navigationBlock nav ul li:hover {
+  cursor: pointer;
+  background-color: #ffb703;
+  border-radius: 5px;
+}
+
+.catBlock {
+  padding: 8px 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.catBlock .catBlockController {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* The switch - the box around the slider */
+  /* Hide default HTML checkbox */
+  /* The slider */
+}
+
+.catBlock .catBlockController p {
+  color: #242424;
+}
+
+.catBlock .catBlockController .switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+}
+
+.catBlock .catBlockController .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.catBlock .catBlockController .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.catBlock .catBlockController .slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.catBlock .catBlockController input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.catBlock .catBlockController input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #2196f3;
+          box-shadow: 0 0 1px #2196f3;
+}
+
+.catBlock .catBlockController input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.catBlock .catBlockController .slider.round {
+  border-radius: 25px;
+}
+
+.catBlock .catBlockController .slider.round:before {
+  border-radius: 50%;
+}
+
+.catBlock .catBlockController .catHouse_s {
+  margin-top: 2rem;
+}
+
+.articleBlock .articleImage {
+  max-height: 273px;
+  overflow: hidden;
+}
+
+.articleBlock .articleImage img {
+  max-width: 100%;
+}
+
+.articleBlock .articleMain {
+  padding: 8px 16px;
+  min-height: 186px;
+  position: relative;
+}
+
+.articleBlock .articleMain .articleProv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.articleBlock .articleMain .articleProv .articleAuther,
+.articleBlock .articleMain .articleProv .articleSource {
+  color: #525252;
+  font-size: 0.75rem;
+  margin-right: 16px;
+}
+
+.articleBlock .articleMain h4 {
+  margin: 8px 0px;
+  color: #171717;
+}
+
+.articleBlock .articleMain .articleTags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.articleBlock .articleMain .articleTags .articleTag {
+  color: #525252;
+  font-size: 0.75rem;
+  margin-right: 16px;
+}
+
+.articleBlock .articleMain .articleDesc {
+  margin-top: 16px;
+  color: #404040;
+}
+
+.articleBlock .articleMain .articleController {
+  position: absolute;
+  right: 16px;
+  top: -8px;
+  margin-top: 16px;
+}
+
+.articleBlock .articleMain .articleController .articleLikeBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.articleBlock .articleMain .articleController .articleLikeBtn img {
+  width: 24px;
+}
+
+.articleBlock .articleMain .articleController .articleLikeBtn img:hover {
+  cursor: pointer;
+}
+
+.domainManager {
+  height: auto;
+}
+
+.domainManager .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 0rem 0rem 2rem;
+  height: 8rem;
+  background-color: #fafafa;
+  border-bottom: 1px solid #bfbab7;
+}
+
+.domainManager .top h1 {
+  color: #333333;
+}
+
+.domainManager .bottom {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30rem;
+}
+
+.domainManager .bottom .subList,
+.domainManager .bottom .unsubList {
+  overflow-y: scroll;
+  width: 35%;
+  height: auto;
+  border: 2px solid #bfbab7;
+}
+
+.domainManager .bottom .btnGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.domainManager .bottom .btnGroup button {
+  width: 4rem;
+  height: 2rem;
+}
+
+.domainbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+          box-shadow: 1px 1px 1px 1px #ccc;
+  width: 100%;
+  height: 30px;
+}
+
+.domainbar input[type='checkbox'] {
+  width: 10%;
+  height: 100%;
+}
+
+.domainbar label {
+  width: 90%;
+  height: 100%;
+}
+
+.tagManager {
+  height: auto;
+}
+
+.tagManager .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 0rem 0rem 2rem;
+  height: 8rem;
+  background-color: #fafafa;
+  border-bottom: 1px solid #bfbab7;
+}
+
+.tagManager .top h1 {
+  color: #333333;
+}
+
+.tagManager .top .statisticsTopRight {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 100%;
+  width: 50%;
+}
+
+.tagManager .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 60rem;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 2rem;
+  height: 100%;
+}
+
+.tagManager .bottom .statisticsBottomLeft,
+.tagManager .bottom .statisticsBottomRight {
+  height: 100%;
+  width: 40%;
+}
+
+.tagManager .bottom .statisticsBottomLeft .tagController,
+.tagManager .bottom .statisticsBottomRight .tagController {
+  height: 70vh;
+  overflow: scroll;
+  border: 1px solid black;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.tagManager .bottom .statisticsBottomLeft .tagController .tag,
+.tagManager .bottom .statisticsBottomRight .tagController .tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+  width: 12rem;
+}
+
+.tagManager .bottom .statisticsBottomLeft .tagController .tag p,
+.tagManager .bottom .statisticsBottomRight .tagController .tag p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-right: 1px solid black;
+  width: 8rem;
+}
+
+.tagManager .bottom .statisticsBottomLeft .tagController .tag button,
+.tagManager .bottom .statisticsBottomRight .tagController .tag button {
+  margin-left: auto;
+  padding: 0 1rem;
+  width: 4rem;
+  background-color: #ffd26d;
+}
+
+.tagManager .bottom .statisticsBottomLeft .tagController .tag button:hover,
+.tagManager .bottom .statisticsBottomRight .tagController .tag button:hover {
+  cursor: pointer;
+  color: #f0b1b8;
+}
+
+.catPage {
+  height: auto;
+}
+
+.catPage .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 0rem 0rem 2rem;
+  height: 8rem;
+  background-color: #fafafa;
+  border-bottom: 1px solid #bfbab7;
+}
+
+.catPage .top h1 {
+  color: #333333;
+}
+
+.catPage .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.catPage .bottom .storeBottomLeft {
+  border: 1px solid black;
+  width: 25rem;
+  height: 80vh;
+  overflow: scroll;
+}
+
+.catPage .bottom .storeBottomLeft .storeList .storeItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.catPage .bottom .storeBottomLeft .storeList .storeItem img {
+  width: 100px;
+}
+
+.catPage .bottom .storeBottomRight .missionInfo .storeMission div .g-container {
+  width: 10rem;
+  height: 1rem;
+  border-radius: 3px;
+  background: #eee;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.catPage .bottom .storeBottomRight .missionInfo .storeMission div .g-container .g-progress {
+  height: inherit;
+  border-radius: 3px 0 0 3px;
+  background: #0f0;
+}
+/*# sourceMappingURL=app.css.map */

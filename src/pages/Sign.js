@@ -37,7 +37,8 @@ const Sign = () => {
       <h1>RSSCAT</h1>
       <div className="oauth">
         <Facebook />
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <Google />
+        {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
       </div>
       <div className="signbox">
         <nav>

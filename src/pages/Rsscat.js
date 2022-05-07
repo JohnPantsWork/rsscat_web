@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
-import { API_HOST } from '../assets/constants';
 
 import Nav from '../components/rsscat/Nav';
 import Feedmeow from '../components/rsscat/Feedmeow';
@@ -12,6 +11,7 @@ import Settings from '../components/rsscat/Settings';
 import Cat from '../components/rsscat/Cat';
 import '../styles/rsscat/rsscat.css';
 
+const { REACT_APP_HOST } = process.env;
 export const missionContext = createContext(null);
 
 const Rsscat = () => {
@@ -24,14 +24,13 @@ const Rsscat = () => {
     try {
       const missionResult = await axios({
         withCredentials: true,
-        url: API_HOST + `/api/1.0/cat/mission`,
+        url: REACT_APP_HOST + `/api/1.0/cat/mission`,
       });
       let missions = missionResult.data.data.missions;
       missions = missions.map((mission) => {
         mission['prograss'] = 0;
         return mission;
       });
-      console.log(`#mission#`, missions);
       setMissions(missions);
     } catch (err) {
       window.location.href = '/sign';
@@ -52,7 +51,7 @@ const Rsscat = () => {
           await axios({
             withCredentials: true,
             method: 'PATCH',
-            url: API_HOST + `/api/1.0/cat/mission`,
+            url: REACT_APP_HOST + `/api/1.0/cat/mission`,
             data: { completed: m[i].id },
           });
           break;
@@ -65,19 +64,25 @@ const Rsscat = () => {
     const result = await axios({
       withCredentials: true,
       method: 'GET',
-      url: API_HOST + `/api/1.0/tag`,
+      url: REACT_APP_HOST + `/api/1.0/tag`,
     });
     const realTags = result.data.data.likeTags;
     const tagNames = realTags.map((e) => {
       return e.tag_name;
     });
+    console.log(`#tags#`, tags);
     setTags(tagNames);
+    console.log(`#tags2#`, tags);
   };
 
   useEffect(() => {
     getTags();
     getMission();
   }, []);
+
+  useEffect(() => {
+    console.log(`#tags3#`, tags);
+  }, [tags]);
 
   useEffect(() => {
     switch (content) {
@@ -91,7 +96,7 @@ const Rsscat = () => {
         setRenderContent(<News />);
         break;
       case 'statistics':
-        setRenderContent(<Statistics tags={tags} />);
+        setRenderContent(<Statistics tags={tags} getTags={getTags} />);
         break;
       case 'store':
         setRenderContent(<Store missions={missions} />);

@@ -5,13 +5,111 @@ $color_important_unactive: #f0b1b8;
 $color_normal: #bfbab7;
 $color_nav: #666666;
 $color_title: #333333;
-$color_background: #ffffff;
+$color_background: #fafafa;
+
+$color_main: #ffb703;
+// $color_main: #05aa6d;
+$color_main_text: #f9f9f9;
+$colot_bg_textarea: #ffffff;
+$colot_border_textarea: #dddddd;
+$color_bg_universal: #fafafa;
+$color_text_title_main: #090909;
+$color_text_title_common: #171717;
+$color_text_category: #242424;
+$color_text_common: #404040;
+$color_text_misc: #525252;
+
+$font_size_main: 1.5rem;
+$font_size_title: 1.25rem;
+$font_size_common: 1rem;
+$font_size_misc: 0.75rem;
+
+$line_height_main: 1.5;
+
+$width_boundry_1: 1280px;
+$width_boundry_2: 1024px;
+$width_boundry_3: 768px;
+$width_boundry_4: 640px;
+
+$height_boundry_1: 768px;
+
+$margin_common_h: 16px;
+$margin_common_v: 8px;
+$margin_narrow_h: 8px;
+$margin_narrow_v: 8px;
+
+$padding_box: 20px;
+$header_height: 56px;
+$footer_height_normal: 112px;
+$footer_height_with_bar: 168px;
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
+  color: $color_text_common;
 }
 
-@import './loading.css/dist/loading.css';
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color_bg_universal;
+}
+
+.block {
+  margin: 8px 16px;
+  border: 1px solid $colot_border_textarea;
+  border-radius: 5px;
+  background-color: $colot_bg_textarea;
+  box-shadow: 2px 2px 4px $colot_border_textarea;
+  overflow: hidden;
+}
+
+.rwd {
+  flex: 0 1 $width_boundry_1;
+  width: 100%;
+  max-width: $width_boundry_1;
+
+  display: flex;
+  justify-content: center;
+
+  .leftNav {
+    flex: 0 0 240px;
+    margin: 16px 8px 0 16px;
+  }
+  .mainInfo {
+    flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 2;
+    margin: 16px 8px 0 8px;
+  }
+  .RightNav {
+    flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 1;
+    margin: 16px 16px 0 8px;
+  }
+  @media screen and (max-width: $width_boundry_2) {
+    .leftNav {
+      flex: 0 1 240px;
+    }
+    .mainInfo {
+      flex: 0 1 ($width_boundry_2 - 240px);
+    }
+    .RightNav {
+      display: none;
+    }
+  }
+  @media screen and (max-width: $width_boundry_3) {
+    .leftNav {
+      display: none;
+    }
+    .mainInfo {
+      flex: 0 1 ($width_boundry_3);
+    }
+    .RightNav {
+      display: none;
+    }
+  }
+}

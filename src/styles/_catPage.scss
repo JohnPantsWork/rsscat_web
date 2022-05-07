@@ -1,0 +1,60 @@
+.catPage {
+  height: auto;
+  .top {
+    display: flex;
+    padding: 2rem 0rem 0rem 2rem;
+    height: 8rem;
+    background-color: $color_background;
+    border-bottom: 1px solid $color_normal;
+
+    h1 {
+      color: $color_title;
+    }
+  }
+  .bottom {
+    display: flex;
+    .storeBottomLeft {
+      border: 1px solid black;
+      width: 25rem;
+      height: 80vh;
+      overflow: scroll;
+      .storeList {
+        .storeItem {
+          display: flex;
+          flex-direction: row;
+          border: 1px solid black;
+          border-radius: 3px;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          justify-content: space-around;
+          img {
+            width: 100px;
+          }
+        }
+      }
+    }
+    .storeBottomRight {
+      .missionInfo {
+        .storeMission {
+          div {
+            .g-container {
+              width: 10rem;
+              height: 1rem;
+              border-radius: 3px;
+              background: #eee;
+              border: 1px solid black;
+              overflow: hidden;
+              .g-progress {
+                height: inherit;
+                border-radius: 3px 0 0 3px;
+                background: #0f0;
+              }
+            }
+          }
+        }
+      }
+      .storeInfo {
+      }
+    }
+  }
+}

@@ -45,13 +45,24 @@
         width: 60rem;
         background-color: $color_background;
 
-        .picture {
-          object-fit: cover;
-          width: 10rem;
-          height: 100px;
-        }
-        .picture:hover {
-          cursor: pointer;
+        .operator {
+          display: flex;
+          flex-direction: column;
+          .picture {
+            object-fit: cover;
+            width: 10rem;
+            height: 100px;
+          }
+          .picture:hover {
+            cursor: pointer;
+          }
+          button {
+            margin-top: 1rem;
+            width: 5rem;
+          }
+          button:hover {
+            cursor: pointer;
+          }
         }
         .details {
           padding: 0rem 1rem;

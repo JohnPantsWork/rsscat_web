@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 
+const { REACT_APP_HOST, REACT_APP_GOOGLE_ReCAPTCHA } = process.env;
+
 const Signup = () => {
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
@@ -51,7 +53,7 @@ const Signup = () => {
     const result = await axios({
       withCredentials: true,
       method: 'POST',
-      url: 'http://localhost:3001/api/1.0/user/signUp',
+      url: REACT_APP_HOST + '/api/1.0/user/signUp',
       data: {
         provider: 0,
         username: username,
@@ -64,7 +66,7 @@ const Signup = () => {
     switch (status) {
       case 2010:
         console.log(`#註冊成功#`);
-        window.location.href = '/rsscat';
+        window.location.href = '/rss';
         break;
       default:
         console.log(`#登入失敗#`);
@@ -83,7 +85,7 @@ const Signup = () => {
         <label>再次輸入密碼</label>
         <input type="password" onChange={getPasswordAgain} />
       </form>
-      <ReCAPTCHA sitekey="6LdBmZUfAAAAAB3zPYKRY6SAYdstEB71YWTb7RDM" onChange={getReCaptcha} />
+      <ReCAPTCHA sitekey={`${REACT_APP_GOOGLE_ReCAPTCHA}`} onChange={getReCaptcha} />
       <div>
         <button className="signUp" onClick={userSubmit}>
           註冊

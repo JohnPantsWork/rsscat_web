@@ -1,10 +1,104 @@
-@import url(/Users/aming/github/rsscat_web/src/styles/loading.css/dist/loading.css);
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
+  color: #404040;
+}
+
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fafafa;
+}
+
+.block {
+  margin: 8px 16px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 2px 2px 4px #dddddd;
+          box-shadow: 2px 2px 4px #dddddd;
+  overflow: hidden;
+}
+
+.rwd {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1280px;
+          flex: 0 1 1280px;
+  width: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rwd .leftNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 240px;
+          flex: 0 0 240px;
+  margin: 16px 8px 0 16px;
+}
+
+.rwd .mainInfo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 693.33333px;
+          flex: 0 1 693.33333px;
+  margin: 16px 8px 0 8px;
+}
+
+.rwd .RightNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 346.66667px;
+          flex: 0 1 346.66667px;
+  margin: 16px 16px 0 8px;
+}
+
+@media screen and (max-width: 1024px) {
+  .rwd .leftNav {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 240px;
+            flex: 0 1 240px;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 784px;
+            flex: 0 1 784px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rwd .leftNav {
+    display: none;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 768px;
+            flex: 0 1 768px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
 }
 
 .homepage {
@@ -14,7 +108,7 @@
 
 .footer {
   height: 10vh;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-top: 1px solid #bfbab7;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -132,7 +226,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #ffffff;
+  background-color: #fafafa;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

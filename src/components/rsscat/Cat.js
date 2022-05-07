@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { API_HOST } from '../../assets/constants';
-import { missionContext } from '../../pages/Rsscat';
+// import { missionContext } from '../../pages/Rsscat';
 
 import catShock from '../../assets/images/cat01-brown.png';
 import catHug from '../../assets/images/cat02-brown.png';
@@ -13,6 +12,7 @@ import catCurious from '../../assets/images/cat07-brown.png';
 import catSleep from '../../assets/images/cat08-brown.png';
 import catHappy from '../../assets/images/cat09-brown.png';
 import catWaiting from '../../assets/images/cat10-brown.png';
+const { REACT_APP_HOST } = process.env;
 
 const A_DAY_LONG = 24 * 60 * 60 * 1000;
 const CAT_ANGRY_DAYS = 3;
@@ -23,7 +23,7 @@ const Cat = () => {
   const [catMove, setCatMove] = useState('');
   const [catSrc, setCatSrc] = useState(catWaiting);
   const [catStyle, setCatStyle] = useState({});
-  const { missionEvent } = useContext(missionContext);
+  // const { missionEvent } = useContext(missionContext);
 
   const catController = {
     style: {
@@ -164,7 +164,7 @@ const Cat = () => {
       const catStateResult = await axios({
         withCredentials: true,
         method: 'GET',
-        url: API_HOST + `/api/1.0/cat`,
+        url: REACT_APP_HOST + `/api/1.0/cat`,
       });
 
       this.data = catStateResult.data.data;

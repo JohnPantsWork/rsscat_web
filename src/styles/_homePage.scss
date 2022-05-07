@@ -1,0 +1,57 @@
+.homePage {
+  width: 100%;
+  max-width: $width_boundry_1;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  .showcase {
+    width: inherit;
+    height: 80vh;
+  }
+
+  .show1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url('../assets/svg/Leave-100s-1440px_green.svg');
+    background-size: auto;
+    h1 {
+      text-align: center;
+
+      font-size: 2rem;
+      color: $color_text_title_main;
+    }
+    h3 {
+      text-align: center;
+
+      margin-top: 30px;
+      font-size: $font_size_main;
+      color: $color_text_title_main;
+    }
+    button {
+      width: 10rem;
+      height: 3rem;
+
+      margin-top: 30px;
+      background-color: $color_main;
+    }
+  }
+}
+@media screen and (min-width: $height_boundry_1) {
+  .home {
+    .show1 {
+      h3 {
+        br {
+          display: none; /* hide the BR tag for wider screens (i.e. disable the line break) */
+        }
+      }
+      button {
+        width: 30rem;
+      }
+    }
+  }
+}

@@ -1,10 +1,104 @@
-@import url(/Users/aming/github/rsscat_web/src/styles/loading.css/dist/loading.css);
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
+  color: #404040;
+}
+
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fafafa;
+}
+
+.block {
+  margin: 8px 16px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 2px 2px 4px #dddddd;
+          box-shadow: 2px 2px 4px #dddddd;
+  overflow: hidden;
+}
+
+.rwd {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1280px;
+          flex: 0 1 1280px;
+  width: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rwd .leftNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 240px;
+          flex: 0 0 240px;
+  margin: 16px 8px 0 16px;
+}
+
+.rwd .mainInfo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 693.33333px;
+          flex: 0 1 693.33333px;
+  margin: 16px 8px 0 8px;
+}
+
+.rwd .RightNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 346.66667px;
+          flex: 0 1 346.66667px;
+  margin: 16px 16px 0 8px;
+}
+
+@media screen and (max-width: 1024px) {
+  .rwd .leftNav {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 240px;
+            flex: 0 1 240px;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 784px;
+            flex: 0 1 784px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rwd .leftNav {
+    display: none;
+  }
+  .rwd .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 768px;
+            flex: 0 1 768px;
+  }
+  .rwd .RightNav {
+    display: none;
+  }
 }
 
 .rsscat {
@@ -21,7 +115,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  background-color: #fafafa;
   height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -125,7 +219,7 @@
   display: flex;
   padding: 2rem 0rem 0rem 2rem;
   height: 8rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #bfbab7;
 }
 
@@ -141,12 +235,12 @@
   margin-left: 1rem;
   background-color: #bfbab7;
   border: 1px solid #bfbab7;
-  color: #ffffff;
+  color: #fafafa;
   font-size: 1.5rem;
 }
 
 .feedmeow .top .control button:hover {
-  background-color: #ffffff;
+  background-color: #fafafa;
   color: #bfbab7;
 }
 
@@ -184,17 +278,36 @@
   display: -ms-flexbox;
   display: flex;
   width: 60rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
 }
 
-.feedmeow .bottom .rsscards .rsscard .picture {
+.feedmeow .bottom .rsscards .rsscard .operator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.feedmeow .bottom .rsscards .rsscard .operator .picture {
   -o-object-fit: cover;
      object-fit: cover;
   width: 10rem;
   height: 100px;
 }
 
-.feedmeow .bottom .rsscards .rsscard .picture:hover {
+.feedmeow .bottom .rsscards .rsscard .operator .picture:hover {
+  cursor: pointer;
+}
+
+.feedmeow .bottom .rsscards .rsscard .operator button {
+  margin-top: 1rem;
+  width: 5rem;
+}
+
+.feedmeow .bottom .rsscards .rsscard .operator button:hover {
   cursor: pointer;
 }
 
@@ -296,7 +409,7 @@
   display: flex;
   padding: 2rem 0rem 0rem 2rem;
   height: 8rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #bfbab7;
 }
 
@@ -349,7 +462,7 @@
   display: flex;
   padding: 2rem 0rem 0rem 2rem;
   height: 8rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #bfbab7;
 }
 
@@ -365,12 +478,12 @@
   margin-left: 1rem;
   background-color: #bfbab7;
   border: 1px solid #bfbab7;
-  color: #ffffff;
+  color: #fafafa;
   font-size: 1.5rem;
 }
 
 .news .top .control button:hover {
-  background-color: #ffffff;
+  background-color: #fafafa;
   color: #bfbab7;
 }
 
@@ -408,17 +521,36 @@
   display: -ms-flexbox;
   display: flex;
   width: 60rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
 }
 
-.news .bottom .newscards .newscard .picture {
+.news .bottom .newscards .newscard .operator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.news .bottom .newscards .newscard .operator .picture {
   -o-object-fit: cover;
      object-fit: cover;
   width: 10rem;
   height: 100px;
 }
 
-.news .bottom .newscards .newscard .picture:hover {
+.news .bottom .newscards .newscard .operator .picture:hover {
+  cursor: pointer;
+}
+
+.news .bottom .newscards .newscard .operator button {
+  margin-top: 1rem;
+  width: 5rem;
+}
+
+.news .bottom .newscards .newscard .operator button:hover {
   cursor: pointer;
 }
 
@@ -520,7 +652,7 @@
   display: flex;
   padding: 2rem 0rem 0rem 2rem;
   height: 8rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #bfbab7;
 }
 
@@ -587,12 +719,23 @@
   display: flex;
   padding: 2rem 0rem 0rem 2rem;
   height: 8rem;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #bfbab7;
 }
 
 .statistics .top h1 {
   color: #333333;
+}
+
+.statistics .top .statisticsTopRight {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 100%;
+  width: 50%;
 }
 
 .statistics .bottom {
@@ -607,7 +750,18 @@
   height: 100%;
 }
 
-.statistics .bottom .statisticsBottomLeft {
+.statistics .bottom .statisticsBottomLeft,
+.statistics .bottom .statisticsBottomRight {
+  height: 100%;
+  width: 40%;
+}
+
+.statistics .bottom .statisticsBottomLeft .tagController,
+.statistics .bottom .statisticsBottomRight .tagController {
+  height: 70vh;
+  overflow: scroll;
+  border: 1px solid black;
+  padding: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -615,40 +769,43 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  height: 100%;
-  width: 50%;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-.statistics .bottom .statisticsBottomRight {
-  height: 100%;
-  width: 50%;
+.statistics .bottom .statisticsBottomLeft .tagController .tag,
+.statistics .bottom .statisticsBottomRight .tagController .tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+  width: 12rem;
 }
 
-.statistics .bottom .statisticsBottomRight .tagController {
-  height: 70vh;
-  overflow: scroll;
-  border: 1px solid black;
-}
-
+.statistics .bottom .statisticsBottomLeft .tagController .tag p,
 .statistics .bottom .statisticsBottomRight .tagController .tag p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-right: 1px solid black;
+  width: 8rem;
 }
 
-.statistics .bottom .statisticsBottomRight .tagController .tag p span {
+.statistics .bottom .statisticsBottomLeft .tagController .tag button,
+.statistics .bottom .statisticsBottomRight .tagController .tag button {
+  margin-left: auto;
   padding: 0 1rem;
-  width: 2rem;
+  width: 4rem;
   background-color: #ffd26d;
 }
 
-.statistics .bottom .statisticsBottomRight .tagController .tag p span:hover {
+.statistics .bottom .statisticsBottomLeft .tagController .tag button:hover,
+.statistics .bottom .statisticsBottomRight .tagController .tag button:hover {
   cursor: pointer;
   color: #f0b1b8;
 }
