@@ -1,19 +1,40 @@
 import React from 'react';
+import Switcher from './Switcher';
+import axios from 'axios';
 
-const Domainbar = ({ rssId, title, setChecked, removeChecked, clickedBool }) => {
-  const checked = (e) => {
-    const id = Number(e.target.id.split('rss').pop());
-    if (e.target.checked) {
-      setChecked(id);
-    } else {
-      removeChecked(id);
-    }
+const { REACT_APP_HOST } = process.env;
+
+const Domainbar = ({ rssId, title, setLikedDomains, defaultValue }) => {
+  const submitDomain = async () => {
+    setLikedDomains((curr) => curr.concat(rssId));
+    const result = await axios({
+      withCredentials: true,
+      method: 'PATCH',
+      url: `${REACT_APP_HOST}/api/1.0/user/domain`,
+      data: { likedDomainId: rssId },
+    });
+  };
+
+  const unsubmitDomain = async () => {
+    setLikedDomains((curr) =>
+      curr.filter((domain) => {
+        if (domain !== rssId) {
+          return domain;
+        }
+      })
+    );
+    const result = await axios({
+      withCredentials: true,
+      method: 'DELETE',
+      url: `${REACT_APP_HOST}/api/1.0/user/domain`,
+      data: { dislikedDomainId: rssId },
+    });
   };
 
   return (
     <div className="domainbar">
-      <input type="checkbox" id={'rss' + rssId} onChange={checked} checked={clickedBool} />
-      <label for={'rss' + rssId}>{title}</label>
+      <p>{title}</p>
+      <Switcher onEvent={submitDomain} offevent={unsubmitDomain} defaultValue={defaultValue} />
     </div>
   );
 };

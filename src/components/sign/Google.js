@@ -6,21 +6,22 @@ const { REACT_APP_HOST } = process.env;
 
 const Google = () => {
   const responseGoogle = async (response) => {
-    const { accessToken } = response ? response : null;
-    if (accessToken === null) {
+    const { tokenId } = response ? response : null;
+    if (tokenId === null) {
       window.alert('Google login failure.');
     }
     const loginResult = await axios({
       withCredentials: true,
       method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/user/signin`,
+      url: REACT_APP_HOST + `/api/1.0/user/signIn`,
       data: {
         provider: 1,
-        accessToken: accessToken,
+        accessToken: tokenId,
       },
     });
+    console.log(`#loginResult#`, loginResult.data.data);
     if (loginResult.data.data) {
-      window.location.href = '/rsscat';
+      window.location.href = '/rss';
     } else {
       window.alert('Google login failure.');
     }

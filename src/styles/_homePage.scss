@@ -5,10 +5,11 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: center;
 
   .showcase {
     width: inherit;
-    height: 80vh;
+    height: 50vh;
   }
 
   .show1 {
@@ -41,6 +42,11 @@
     }
   }
 }
+
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: $height_boundry_1) {
   .home {
     .show1 {

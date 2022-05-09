@@ -29,7 +29,7 @@
 .block {
   margin: 8px 16px;
   border: 1px solid #dddddd;
-  border-radius: 5px;
+  border-radius: 7.5px;
   background-color: #ffffff;
   -webkit-box-shadow: 2px 2px 4px #dddddd;
           box-shadow: 2px 2px 4px #dddddd;
@@ -54,21 +54,19 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 240px;
           flex: 0 0 240px;
-  margin: 16px 8px 0 16px;
 }
 
 .rwd .mainInfo {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 693.33333px;
           flex: 0 1 693.33333px;
-  margin: 16px 8px 0 8px;
+  scroll-snap-stop: always;
 }
 
 .rwd .RightNav {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 346.66667px;
           flex: 0 1 346.66667px;
-  margin: 16px 16px 0 8px;
 }
 
 @media screen and (max-width: 1024px) {

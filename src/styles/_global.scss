@@ -64,7 +64,7 @@ $footer_height_with_bar: 168px;
 .block {
   margin: 8px 16px;
   border: 1px solid $colot_border_textarea;
-  border-radius: 5px;
+  border-radius: 7.5px;
   background-color: $colot_bg_textarea;
   box-shadow: 2px 2px 4px $colot_border_textarea;
   overflow: hidden;
@@ -80,15 +80,16 @@ $footer_height_with_bar: 168px;
 
   .leftNav {
     flex: 0 0 240px;
-    margin: 16px 8px 0 16px;
+    // margin: 16px 8px 0 16px;
   }
   .mainInfo {
     flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 2;
-    margin: 16px 8px 0 8px;
+    scroll-snap-stop: always;
+    // margin: 16px 8px 0 8px;
   }
   .RightNav {
     flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 1;
-    margin: 16px 16px 0 8px;
+    // margin: 16px 16px 0 8px;
   }
   @media screen and (max-width: $width_boundry_2) {
     .leftNav {

@@ -37,11 +37,20 @@
       }
       .searchBar {
         padding: 1rem;
+        position: relative;
         input {
           width: 250px;
           height: 2rem;
           border-radius: 4px;
           padding: 0.5rem;
+        }
+        img {
+          height: 75%;
+          position: absolute;
+          right: 0;
+        }
+        img:hover {
+          cursor: pointer;
         }
       }
     }

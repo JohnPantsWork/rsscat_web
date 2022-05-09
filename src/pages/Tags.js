@@ -5,7 +5,7 @@ import NavBlock from '../components/NavBlock';
 import TagManager from '../components/TagManager';
 import CatBlock from '../components/CatBlock';
 
-const TagPage = () => {
+const TagPage = ({ toastEvent }) => {
   return (
     <div className="tagPage rwd">
       <div className="leftNav">
@@ -13,7 +13,7 @@ const TagPage = () => {
         <CatBlock />
       </div>
       <div className="mainInfo">
-        <TagManager />
+        <TagManager toastEvent={toastEvent} />
       </div>
       <div className="RightNav"></div>
     </div>

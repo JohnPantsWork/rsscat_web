@@ -1,42 +1,93 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 import NavBlock from '../components/NavBlock';
 import ArticleBlock from '../components/ArticleBlock';
 import CatBlock from '../components/CatBlock';
+import { missionContext } from '../App';
 
-const { REACT_APP_HOST } = process.env;
+const { REACT_APP_HOST, REACT_APP_DATATYPE_ID_NEWS } = process.env;
+
 let explorepage = 0;
+let currentState = 'explore';
 
-const News = () => {
-  const [newsCards, setNewsCard] = useState([]);
+const News = ({ setToggleFooter, getTags, tags }) => {
   const [newsData, setNewsData] = useState([]);
+  const { missionEvent } = useContext(missionContext);
 
   const getExploreNews = async () => {
-    setNewsCard([]);
-    let result;
-    result = await axios({
+    let newsResult;
+    newsResult = await axios({
       withCredentials: true,
       url: REACT_APP_HOST + `/api/1.0/news?paging=${explorepage}`,
       method: 'GET',
     });
-    if (result.data.data.length === 0) {
+    if (newsResult.data.data.length === 0) {
       explorepage = 0;
-      result = await axios({
+      newsResult = await axios({
         withCredentials: true,
         url: REACT_APP_HOST + `/api/1.0/news?paging=${explorepage}`,
         method: 'GET',
       });
     }
-    setNewsData(result.data.data);
-    console.log(`#result.data.data#`, result.data.data);
+
+    const newsArticles = newsResult.data.data;
+
+    setNewsData((curr) => curr.concat(newsArticles));
     explorepage += 1;
     // missionEvent(6, 2);
   };
 
-  useEffect(() => {
+  const getFeedNews = async () => {
+    let newsResult;
+    newsResult = await axios({
+      withCredentials: true,
+      url: REACT_APP_HOST + `/api/1.0/news/user?paging=${explorepage}`,
+      method: 'GET',
+      data: { tags: tags },
+    });
+    if (newsResult.data.data.length === 0) {
+      explorepage = 0;
+      newsResult = await axios({
+        withCredentials: true,
+        url: REACT_APP_HOST + `/api/1.0/news/user?paging=${explorepage}`,
+        method: 'GET',
+      });
+    }
+    const newsArticles = newsResult.data.data;
+    setNewsData((curr) => curr.concat(newsArticles));
+    explorepage += 1;
+  };
+
+  const loadMoreArticle = async () => {
+    if (currentState === 'explore') {
+      getExploreNews();
+    } else {
+      getFeedNews();
+    }
+  };
+
+  const switchToExplore = async () => {
+    explorepage = 0;
+    currentState = 'explore';
+    setNewsData([]);
     getExploreNews();
+  };
+
+  const switchToFeed = async () => {
+    explorepage = 0;
+    currentState = 'Feed';
+    setNewsData([]);
+    getFeedNews();
+  };
+
+  useEffect(() => {
+    (async () => {
+      // await setToggleFooter(false);
+      await getExploreNews();
+      await getTags();
+    })();
   }, []);
 
   return (
@@ -46,22 +97,14 @@ const News = () => {
         <CatBlock />
       </div>
       <div className="mainInfo">
+        <button onClick={switchToExplore}>探索</button>
+        <button onClick={switchToFeed}>與你相關</button>
         {newsData.map((article) => {
-          return (
-            <ArticleBlock
-              key={uuidv4()}
-              picture={article.picture}
-              url={article.url}
-              title={article.title}
-              auther={article.auther}
-              source={article.source}
-              desc={article.des}
-              tag1={article.tag1}
-              tag2={article.tag2}
-              tag3={article.tag3}
-            />
-          );
+          return <ArticleBlock key={uuidv4()} article={article} type={REACT_APP_DATATYPE_ID_NEWS} />;
         })}
+        <button className="moreBtn" onClick={loadMoreArticle}>
+          載入更多文章
+        </button>
       </div>
       <div className="RightNav"></div>
     </div>

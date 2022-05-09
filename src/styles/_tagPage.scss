@@ -1,66 +1,12 @@
 .tagManager {
-  height: auto;
-  .top {
+}
+.tagbarTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.tagbar {
+  .tagInfo {
     display: flex;
-    padding: 2rem 0rem 0rem 2rem;
-    height: 8rem;
-    background-color: $color_background;
-    border-bottom: 1px solid $color_normal;
-
-    h1 {
-      color: $color_title;
-    }
-    .statisticsTopRight {
-      display: flex;
-      justify-content: space-evenly;
-      height: 100%;
-      width: 50%;
-    }
-  }
-  .bottom {
-    display: flex;
-    width: 60rem;
-    justify-content: space-evenly;
-    padding: 2rem;
-    height: 100%;
-
-    .statisticsBottomLeft,
-    .statisticsBottomRight {
-      height: 100%;
-      width: 40%;
-      .tagController {
-        height: 70vh;
-        overflow: scroll;
-        border: 1px solid black;
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        .tag {
-          display: flex;
-
-          margin-bottom: 1rem;
-          width: 12rem;
-
-          p {
-            display: flex;
-            text-align: center;
-            justify-content: space-between;
-            border-right: 1px solid black;
-            width: 8rem;
-          }
-          button {
-            margin-left: auto;
-            padding: 0 1rem;
-            width: 4rem;
-            background-color: $color_primary;
-          }
-          button:hover {
-            cursor: pointer;
-            color: $color_important_unactive;
-          }
-        }
-      }
-    }
+    justify-content: space-between;
   }
 }

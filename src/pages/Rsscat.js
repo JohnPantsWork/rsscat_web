@@ -64,15 +64,13 @@ const Rsscat = () => {
     const result = await axios({
       withCredentials: true,
       method: 'GET',
-      url: REACT_APP_HOST + `/api/1.0/tag`,
+      url: REACT_APP_HOST + `/api/1.0/user/tag`,
     });
     const realTags = result.data.data.likeTags;
     const tagNames = realTags.map((e) => {
       return e.tag_name;
     });
-    console.log(`#tags#`, tags);
     setTags(tagNames);
-    console.log(`#tags2#`, tags);
   };
 
   useEffect(() => {

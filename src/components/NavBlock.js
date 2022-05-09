@@ -13,11 +13,11 @@ const NavBlock = () => {
         <ul>
           <li>
             <img src={rssIcon} alt="article" />
-            <a href="/rss">RSS 文章</a>
+            <a href="/rss">RSS文章</a>
           </li>
           <li>
             <img src={domainIcon} alt="domain" />
-            <a href="/manager">RSS 來源</a>
+            <a href="/manager">RSS來源</a>
           </li>
           <li>
             <img src={newsIcon} alt="news" />

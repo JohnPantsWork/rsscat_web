@@ -13,15 +13,15 @@ const Rsscard = ({ card, setLikedTags, setDislikedTags }) => {
     const cardTags = [card.tag_id_1, card.tag_id_2, card.tag_id_3];
     const result = await axios({
       withCredentials: true,
-      method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/tag`,
-      data: { method: 'add', likeTags: cardTags, dislikeTags: [] },
+      method: 'PATCH',
+      url: REACT_APP_HOST + `/api/1.0/user/tag`,
+      data: { likedTags: cardTags },
     });
     // setLikedTags(result.data.data.likeTags);
     await axios({
       withCredentials: true,
       method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/tag/record`,
+      url: REACT_APP_HOST + `/api/1.0/record`,
       data: { tag_id_arr: [card.tag_id_1, card.tag_id_2, card.tag_id_3], data_id: card.id, datatype_id: DATATYPE_ID_RSS },
     });
   };
@@ -30,9 +30,9 @@ const Rsscard = ({ card, setLikedTags, setDislikedTags }) => {
   //   const cardTags = [card.tag_id_1, card.tag_id_2, card.tag_id_3];
   //   const result = await axios({
   //     withCredentials: true,
-  //     method: 'POST',
-  //     url: REACT_APP_HOST + `/api/1.0/tag`,
-  //     data: { method: 'add', likeTags: [], dislikeTags: cardTags },
+  //     method: 'DELETE',
+  //     url: REACT_APP_HOST + `/api/1.0/user/tag`,
+  //     data: { dislikedTags: cardTags },
   //   });
   //   setDislikedTags(result.data.data.dislikeTags);
   // };

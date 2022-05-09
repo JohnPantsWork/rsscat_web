@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 
-const StoreMission = ({ title, reward, prograss, volume }) => {
+const Missionbar = ({ title, reward, prograss, volume }) => {
   return (
-    <div className="storeMission">
+    <div className="Missionbar">
       <div>
         <h3>{title}</h3>
         <p>獎勵：{reward}</p>
-        <div class="g-container">
+        <div className="g-container">
           <div
-            class="g-progress"
+            className="g-progress"
             style={{
               width: `${(prograss / volume) * 100}%`,
             }}
@@ -20,4 +20,4 @@ const StoreMission = ({ title, reward, prograss, volume }) => {
   );
 };
 
-export default StoreMission;
+export default Missionbar;

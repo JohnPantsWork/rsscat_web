@@ -5,6 +5,10 @@ const Home = ({ setToggleFooter }) => {
     setToggleFooter(true);
   }, []);
 
+  const sign = () => {
+    window.location.href = '/sign';
+  };
+
   return (
     <div className="homePage">
       <div className="showcase show1">
@@ -13,7 +17,7 @@ const Home = ({ setToggleFooter }) => {
           Feed Your Information Hunger
           <br /> Within One Website
         </h3>
-        <button>現在免費開始</button>
+        <button onClick={sign}>現在免費開始</button>
       </div>
     </div>
   );

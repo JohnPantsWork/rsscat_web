@@ -1,153 +1,154 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import LikedTag from './LikedTag';
+import Tagbar from './Tagbar';
 import { v4 as uuidv4 } from 'uuid';
 
 const { REACT_APP_HOST } = process.env;
 
-const TagManager = () => {
-  // const [catClicked, setCatClicked] = useState(0);
-  const [likedCounts, setLikedCounts] = useState(0);
-  // const [linkCounts, setLinkCounts] = useState(0);
-  const [missionCompleted, setMissionCompleted] = useState(0);
-  const [signupDate, setSignupDate] = useState('');
-  const [username, setusername] = useState('');
-  const [tagRecord, setTagRecord] = useState([]);
-  const [tagCount, setTagCount] = useState(0);
-  const [tags, setTags] = useState([]);
+const TagManager = ({ toastEvent }) => {
+  const [likedTags, setLikedTags] = useState([]);
+  const [dislikedTags, setDislikedTags] = useState([]);
+
+  const [record, setRecord] = useState([]);
+  const [recordDict, setRecordDict] = useState({});
 
   const getTags = async () => {
     const result = await axios({
       withCredentials: true,
       method: 'GET',
-      url: REACT_APP_HOST + `/api/1.0/tag`,
+      url: REACT_APP_HOST + `/api/1.0/user/tag`,
     });
-    const realTags = result.data.data.likeTags;
-    const tagNames = realTags.map((e) => {
-      return e.tag_name;
-    });
-    console.log(`#tags#`, tags);
-    setTags(tagNames);
-    console.log(`#tags2#`, tags);
+    setLikedTags(result.data.data.likeTags);
+    setDislikedTags(result.data.data.dislikeTags);
   };
 
-  const getStatisics = async () => {
-    const statisicsResult = await axios({
-      withCredentials: true,
-      method: 'GET',
-      url: REACT_APP_HOST + `/api/1.0/user`,
-    });
-    const stat = statisicsResult.data.data;
-    const date = new Date(stat.signup_date);
-
-    // setCatClicked(stat.cat_clicked);
-    setLikedCounts(stat.liked_counts);
-    // setLinkCounts(stat.link_counts);
-    setMissionCompleted(stat.mission_completed);
-    setSignupDate(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
-    setusername(stat.username);
-  };
-
-  const getTagRecord = async () => {
-    getTags();
+  const getRecord = async () => {
     const tagsResult = await axios({
       withCredentials: true,
       method: 'GET',
-      url: REACT_APP_HOST + `/api/1.0/tag/record`,
+      url: REACT_APP_HOST + `/api/1.0/record`,
     });
-    const tags = tagsResult.data.data;
+    let tags = tagsResult.data.data;
+    setRecord(tags);
+    let recordDict = tags.reduce((acc, curr) => {
+      acc[curr.tag_id] = { counts: curr.counts, tag_name: curr.tag_name };
+      return acc;
+    }, {});
+    setRecordDict(recordDict);
+  };
 
-    setTagRecord(tags);
-    setTagCount(tags.length);
-    console.log(`#tags.length#`, tags.length);
+  const tagEvent = {
+    addTag: async (id) => {
+      const result = await axios({
+        withCredentials: true,
+        method: 'PATCH',
+        url: REACT_APP_HOST + `/api/1.0/user/tag`,
+        data: { likedTags: [id] },
+      });
+      renderTags(result.data.data.likeTags);
+    },
+    removeTag: async (id) => {
+      const result = await axios({
+        withCredentials: true,
+        method: 'DELETE',
+        url: REACT_APP_HOST + `/api/1.0/user/tag`,
+        data: { dislikedTags: [id] },
+      });
+      renderTags(result.data.data.likeTags);
+    },
+    removeNoneAssociate: async () => {
+      const result = await axios({
+        withCredentials: true,
+        method: 'DELETE',
+        url: REACT_APP_HOST + `/api/1.0/user/tag?associate=0`,
+      });
+
+      renderTags(result.data.data.likeTags);
+      toastEvent.t01();
+    },
+    // set state for re-render
+  };
+
+  const renderTags = (likedTags) => {
+    likedTags = likedTags.map((tag) => {
+      console.log(`#tag#`, tag);
+      tag['tag_id'] = tag.id;
+      tag['counts'] = recordDict[tag.id] !== undefined ? recordDict[tag.id].counts : 0;
+      return tag;
+    });
+    console.log(`#likedTags#`, likedTags);
+    setLikedTags(likedTags);
+
+    const likedArray = arrayObjValue(likedTags);
+    const dislikedTags = record.filter((tag) => {
+      console.log(`#filter tag#`, tag);
+      tag['id'] = tag.tag_id;
+      return likedArray.indexOf(tag.tag_id) === -1;
+    });
+    console.log(`#dislikedTags#`, dislikedTags);
+    setDislikedTags(dislikedTags);
+  };
+
+  const sorting = {
+    sortByName: () => {},
+    sortByNameRevert: () => {},
+    sortByAssociate: () => {},
+    sortByAssociateRevert: () => {},
   };
 
   useEffect(() => {
-    getStatisics();
-    getTagRecord();
-  }, [tagCount]);
-
-  useEffect(() => {
     getTags();
+    getRecord();
   }, []);
 
   return (
     <div className="tagManager block">
-      <div className="top">
-        <section className="head">
-          <h1>統計</h1>
-        </section>
-        <div className="statisticsTopRight">
-          <p>
-            使用者名稱：
-            <br />
-            {username}
-          </p>
-          <p>
-            註冊日期：
-            <br />
-            {signupDate}
-          </p>
-          <p>
-            喜歡文章次數：
-            <br />
-            {likedCounts}
-          </p>
-          {/* <p>文章點擊數：<br/>{linkCounts}</p> */}
-          {/* <p>點貓咪次數：<br/>{catClicked}</p> */}
-          <p>
-            任務完成數：
-            <br />
-            {missionCompleted}
-          </p>
-        </div>
+      <h2>標籤統計</h2>
+      <button onClick={tagEvent.removeNoneAssociate}>移除無關聯度的內容</button>
+      <div className="tagbarTitle">
+        <p>名稱</p>
+        <p>關聯度</p>
+        <p>調整</p>
       </div>
-      <div className="bottom">
-        <div className="statisticsBottomLeft">
-          <h2>標籤統計</h2>
-          <section className="tagController">
-            {tagRecord.map((tag) => {
-              if (!tags.includes(tag.tag_name)) {
-                return;
-              }
-              return (
-                <LikedTag
-                  key={uuidv4()}
-                  type="remove"
-                  tagId={tag.tag_id}
-                  tagName={tag.tag_name}
-                  counts={tag['COUNT(*)']}
-                  tagCount={tagCount}
-                  setTagCount={setTagCount}
-                />
-              );
-            })}
-          </section>
-        </div>
-        <div className="statisticsBottomRight">
-          <h2>取消追蹤的標籤</h2>
-          <section className="tagController">
-            {tagRecord.map((tag) => {
-              if (tags.includes(tag.tag_name)) {
-                return;
-              }
-              return (
-                <LikedTag
-                  key={uuidv4()}
-                  type="add"
-                  tagId={tag.tag_id}
-                  tagName={tag.tag_name}
-                  counts={tag['COUNT(*)']}
-                  tagCount={tagCount}
-                  setTagCount={setTagCount}
-                />
-              );
-            })}
-          </section>
-        </div>
-      </div>
+      <section className="tagController">
+        <h4>你喜歡的標籤</h4>
+        {likedTags.map((tag) => {
+          return (
+            <Tagbar
+              key={uuidv4()}
+              tagId={tag.id}
+              tagName={tag.tag_name}
+              counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
+              clickEvent={tagEvent.removeTag}
+              liked={true}
+            />
+          );
+        })}
+        <hr />
+        <h4>可能喜歡的標籤</h4>
+        {dislikedTags.map((tag) => {
+          return (
+            <Tagbar
+              key={uuidv4()}
+              tagId={tag.id}
+              tagName={tag.tag_name}
+              counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
+              clickEvent={tagEvent.addTag}
+              liked={false}
+            />
+          );
+        })}
+      </section>
     </div>
   );
+};
+
+const arrayObjValue = (array) => {
+  const result = array.map((e) => {
+    const value = Object.values(e)[0];
+    return value;
+  });
+  return result;
 };
 
 export default TagManager;

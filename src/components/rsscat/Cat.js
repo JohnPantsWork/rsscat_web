@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-// import { missionContext } from '../../pages/Rsscat';
+import { missionContext } from '../../pages/Rsscat';
 
 import catShock from '../../assets/images/cat01-brown.png';
 import catHug from '../../assets/images/cat02-brown.png';
@@ -296,7 +296,7 @@ const Cat = () => {
     async crazy() {
       this.stateSwitchCheck('crazy');
       this.stateIgnoreCheck(['happy'], [100], 3);
-      missionEvent(7, 2);
+      // missionEvent(7, 2);
     }
 
     async curious() {
@@ -326,7 +326,7 @@ const Cat = () => {
     async superPlay() {
       this.stateSwitchCheck('superPlay');
       this.stateIgnoreCheck(['play'], [100], 2);
-      missionEvent(7, 2);
+      // missionEvent(7, 2);
     }
 
     async sleep() {
@@ -342,7 +342,7 @@ const Cat = () => {
 
   const touchCat = () => {
     // kitty.getClick();
-    missionEvent(7, 1);
+    // missionEvent(7, 1);
   };
 
   return (

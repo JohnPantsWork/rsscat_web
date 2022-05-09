@@ -1,6 +1,7 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import axios from 'axios';
+
 const { REACT_APP_HOST } = process.env;
 
 const Facebook = () => {
@@ -12,14 +13,15 @@ const Facebook = () => {
     const loginResult = await axios({
       withCredentials: true,
       method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/user/signin`,
+      url: REACT_APP_HOST + `/api/1.0/user/signIn`,
       data: {
         provider: 2,
         accessToken: accessToken,
       },
     });
+    console.log(`#loginResult#`, loginResult.data.data);
     if (loginResult.data.data) {
-      window.location.href = '/rsscat';
+      window.location.href = '/rss';
     } else {
       window.alert('Facebook login failure.');
     }
@@ -29,7 +31,7 @@ const Facebook = () => {
       <FacebookLogin
         appId="679271183308830"
         // autoLoad
-        // callback={responseFacebook}
+        callback={responseFacebook}
         render={(renderProps) => <button onClick={renderProps.onClick}>Continue with Facebook</button>}
         cssClass="facebookBtn"
       />

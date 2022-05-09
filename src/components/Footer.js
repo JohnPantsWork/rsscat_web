@@ -30,6 +30,9 @@ const Footer = () => {
           </a>
           <a href="https://www.flaticon.com/free-icons/cat" title="cat icons">
             Cat icons created by Freepik - Flaticon
+          </a>
+          <a href="https://www.flaticon.com/free-icons/search" title="search icons">
+            Search icons created by Vectors Market - Flaticon
           </a> */}
         </div>
         <div className="copyright">

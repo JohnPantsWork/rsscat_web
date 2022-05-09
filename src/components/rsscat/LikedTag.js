@@ -14,9 +14,9 @@ const LikedTags = ({ type, tagId, tagName, counts, tagCount, setTagCount }) => {
   const deleteTag = async () => {
     const result = await axios({
       withCredentials: true,
-      method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/tag`,
-      data: { method: 'remove', likeTags: [tagId] },
+      method: 'DELETE',
+      url: REACT_APP_HOST + `/api/1.0/user/tag`,
+      data: { likedTags: [tagId] },
     });
     let tags = result.data.data.likeTags;
     if (tags === undefined) {
@@ -26,9 +26,9 @@ const LikedTags = ({ type, tagId, tagName, counts, tagCount, setTagCount }) => {
   const addTag = async () => {
     const result = await axios({
       withCredentials: true,
-      method: 'POST',
-      url: REACT_APP_HOST + `/api/1.0/tag`,
-      data: { method: 'add', likeTags: [tagId] },
+      method: 'PATCH',
+      url: REACT_APP_HOST + `/api/1.0/user/tag`,
+      data: { likedTags: [tagId] },
     });
     let tags = result.data.data.likeTags;
     if (tags === undefined) {

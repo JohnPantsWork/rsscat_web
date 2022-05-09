@@ -37,7 +37,7 @@ const Statistics = ({ tags, getTags }) => {
     const tagsResult = await axios({
       withCredentials: true,
       method: 'GET',
-      url: REACT_APP_HOST + `/api/1.0/tag/record`,
+      url: REACT_APP_HOST + `/api/1.0/record`,
     });
     const tags = tagsResult.data.data;
 
