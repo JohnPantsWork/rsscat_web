@@ -6,7 +6,7 @@ import StoreMission from './Missionbar';
 
 const { REACT_APP_HOST } = process.env;
 
-const Store = () => {
+const Store = ({ toastEvent }) => {
   const [items, setItems] = useState([]);
   const [purchased, setPurchased] = useState([]);
   const [coins, setCoins] = useState(0);
@@ -43,7 +43,7 @@ const Store = () => {
               title={item.title}
               price={item.price}
               purchased={purchased}
-              setPurchased={setPurchased}
+              toastEvent={toastEvent}
             />
           );
         })}

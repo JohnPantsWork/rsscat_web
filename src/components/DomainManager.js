@@ -9,6 +9,8 @@ const Rssmanager = ({ toastEvent }) => {
   // realtime list state
   const [likedDomains, setLikedDomains] = useState([]);
   const [allDomainObjs, setAllDomainObjs] = useState([]);
+  const [searchFilter, setSearchFilter] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
 
   const getLikedRssDomain = async () => {
     const result = await axios({
@@ -39,6 +41,12 @@ const Rssmanager = ({ toastEvent }) => {
     setLikedDomains(result.data.data);
   };
 
+  const search = (e) => {
+    const search = e.target.value;
+    console.log(`#search#`, search);
+    setSearchFilter(search);
+  };
+
   // init
   useEffect(() => {
     (async () => {
@@ -47,10 +55,18 @@ const Rssmanager = ({ toastEvent }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    const result = allDomainObjs.filter((domain) => {
+      return domain.title.includes(searchFilter) === true;
+    });
+    setSearchResult(result);
+  }, [searchFilter]);
+
   return (
     <div className="domainManager block">
       <h1>RSS來源</h1>
       <button
+        className="buttonInside"
         onClick={() => {
           submitDomain(true);
           toastEvent.t02();
@@ -59,6 +75,7 @@ const Rssmanager = ({ toastEvent }) => {
         訂閱全部
       </button>
       <button
+        className="buttonInside"
         onClick={() => {
           submitDomain(false);
           toastEvent.t03();
@@ -66,18 +83,31 @@ const Rssmanager = ({ toastEvent }) => {
       >
         取消所有訂閱
       </button>
+      <input type="text" onChange={search} placeholder={'輸入過濾...'} />
       <section className="subList">
-        {allDomainObjs.map((domain) => {
-          return (
-            <Domainbar
-              key={uuidv4()}
-              rssId={domain.id}
-              title={domain.title}
-              setLikedDomains={setLikedDomains}
-              defaultValue={likedDomains.includes(domain.id) ? true : false}
-            />
-          );
-        })}
+        {searchResult.length === 0
+          ? allDomainObjs.map((domain) => {
+              return (
+                <Domainbar
+                  key={uuidv4()}
+                  rssId={domain.id}
+                  title={domain.title}
+                  setLikedDomains={setLikedDomains}
+                  defaultValue={likedDomains.includes(domain.id) ? true : false}
+                />
+              );
+            })
+          : searchResult.map((domain) => {
+              return (
+                <Domainbar
+                  key={uuidv4()}
+                  rssId={domain.id}
+                  title={domain.title}
+                  setLikedDomains={setLikedDomains}
+                  defaultValue={likedDomains.includes(domain.id) ? true : false}
+                />
+              );
+            })}
       </section>
     </div>
   );

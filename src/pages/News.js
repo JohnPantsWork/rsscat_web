@@ -6,13 +6,14 @@ import NavBlock from '../components/NavBlock';
 import ArticleBlock from '../components/ArticleBlock';
 import CatBlock from '../components/CatBlock';
 import { missionContext } from '../App';
+import MissionBlock from '../components/MissionBlock';
 
 const { REACT_APP_HOST, REACT_APP_DATATYPE_ID_NEWS } = process.env;
 
 let explorepage = 0;
 let currentState = 'explore';
 
-const News = ({ setToggleFooter, getTags, tags }) => {
+const News = ({ setToggleFooter, getTags, tags, toastEvent, missions }) => {
   const [newsData, setNewsData] = useState([]);
   const { missionEvent } = useContext(missionContext);
 
@@ -36,7 +37,7 @@ const News = ({ setToggleFooter, getTags, tags }) => {
 
     setNewsData((curr) => curr.concat(newsArticles));
     explorepage += 1;
-    // missionEvent(6, 2);
+    missionEvent(6, 2);
   };
 
   const getFeedNews = async () => {
@@ -66,6 +67,7 @@ const News = ({ setToggleFooter, getTags, tags }) => {
     } else {
       getFeedNews();
     }
+    missionEvent(6, 2);
   };
 
   const switchToExplore = async () => {
@@ -97,16 +99,22 @@ const News = ({ setToggleFooter, getTags, tags }) => {
         <CatBlock />
       </div>
       <div className="mainInfo">
-        <button onClick={switchToExplore}>探索</button>
-        <button onClick={switchToFeed}>與你相關</button>
+        <button className="button" onClick={switchToExplore}>
+          探索
+        </button>
+        <button className="button" onClick={switchToFeed}>
+          與你相關
+        </button>
         {newsData.map((article) => {
           return <ArticleBlock key={uuidv4()} article={article} type={REACT_APP_DATATYPE_ID_NEWS} />;
         })}
-        <button className="moreBtn" onClick={loadMoreArticle}>
+        <button className="moreBtn button" onClick={loadMoreArticle}>
           載入更多文章
         </button>
       </div>
-      <div className="RightNav"></div>
+      <div className="RightNav">
+        <MissionBlock missions={missions} toastEvent={toastEvent} />
+      </div>
     </div>
   );
 };

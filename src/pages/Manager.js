@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DomainManager from '../components/DomainManager';
+import DomainSubmit from '../components/DomainSubmit';
 import NavBlock from '../components/NavBlock';
 import CatBlock from '../components/CatBlock';
 import Statistics from '../components/Statistics';
@@ -16,7 +17,7 @@ const Manager = ({ toastEvent }) => {
         <DomainManager toastEvent={toastEvent} />
       </div>
       <div className="RightNav">
-        <Statistics />
+        <DomainSubmit />
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ const Facebook = () => {
     });
     console.log(`#loginResult#`, loginResult.data.data);
     if (loginResult.data.data) {
+      localStorage.removeItem('missionData');
       window.location.href = '/rss';
     } else {
       window.alert('Facebook login failure.');

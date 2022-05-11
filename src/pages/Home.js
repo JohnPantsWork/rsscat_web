@@ -17,7 +17,9 @@ const Home = ({ setToggleFooter }) => {
           Feed Your Information Hunger
           <br /> Within One Website
         </h3>
-        <button onClick={sign}>現在免費開始</button>
+        <button className="button" onClick={sign}>
+          現在免費開始
+        </button>
       </div>
     </div>
   );

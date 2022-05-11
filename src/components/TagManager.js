@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const { REACT_APP_HOST } = process.env;
 
 const TagManager = ({ toastEvent }) => {
+  const [tagCounts, setTagCounts] = useState(0);
   const [likedTags, setLikedTags] = useState([]);
   const [dislikedTags, setDislikedTags] = useState([]);
 
@@ -18,7 +19,9 @@ const TagManager = ({ toastEvent }) => {
       method: 'GET',
       url: REACT_APP_HOST + `/api/1.0/user/tag`,
     });
+
     setLikedTags(result.data.data.likeTags);
+    setTagCounts(result.data.data.likeTags.length);
     setDislikedTags(result.data.data.dislikeTags);
   };
 
@@ -89,13 +92,6 @@ const TagManager = ({ toastEvent }) => {
     setDislikedTags(dislikedTags);
   };
 
-  const sorting = {
-    sortByName: () => {},
-    sortByNameRevert: () => {},
-    sortByAssociate: () => {},
-    sortByAssociateRevert: () => {},
-  };
-
   useEffect(() => {
     getTags();
     getRecord();
@@ -104,40 +100,52 @@ const TagManager = ({ toastEvent }) => {
   return (
     <div className="tagManager block">
       <h2>標籤統計</h2>
-      <button onClick={tagEvent.removeNoneAssociate}>移除無關聯度的內容</button>
-      <div className="tagbarTitle">
+      <button className="buttonInside" onClick={tagEvent.removeNoneAssociate}>
+        移除無關聯度的內容
+      </button>
+      <p>啟用中的Tags : {tagCounts}/100</p>
+      <hr />
+      {/* <div className="tagbarTitle">
         <p>名稱</p>
         <p>關聯度</p>
         <p>調整</p>
-      </div>
+      </div> */}
+
       <section className="tagController">
         <h4>你喜歡的標籤</h4>
-        {likedTags.map((tag) => {
-          return (
-            <Tagbar
-              key={uuidv4()}
-              tagId={tag.id}
-              tagName={tag.tag_name}
-              counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
-              clickEvent={tagEvent.removeTag}
-              liked={true}
-            />
-          );
-        })}
-        <hr />
+        <div className="tagControllerLikedTags">
+          {likedTags
+            .map((tag) => {
+              return (
+                <Tagbar
+                  key={uuidv4()}
+                  tagId={tag.id}
+                  tagName={tag.tag_name}
+                  counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
+                  clickEvent={tagEvent.removeTag}
+                  liked={true}
+                />
+              );
+            })
+            .sort(compare)}
+        </div>
+
+        <br />
         <h4>可能喜歡的標籤</h4>
-        {dislikedTags.map((tag) => {
-          return (
-            <Tagbar
-              key={uuidv4()}
-              tagId={tag.id}
-              tagName={tag.tag_name}
-              counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
-              clickEvent={tagEvent.addTag}
-              liked={false}
-            />
-          );
-        })}
+        <div className="tagControllerDisikedTags">
+          {dislikedTags.map((tag) => {
+            return (
+              <Tagbar
+                key={uuidv4()}
+                tagId={tag.id}
+                tagName={tag.tag_name}
+                counts={recordDict[tag.id] ? recordDict[tag.id].counts : 0}
+                clickEvent={tagEvent.addTag}
+                liked={false}
+              />
+            );
+          })}
+        </div>
       </section>
     </div>
   );
@@ -150,5 +158,16 @@ const arrayObjValue = (array) => {
   });
   return result;
 };
+
+function compare(a, b) {
+  console.log(`#a#`, a);
+  if (a.props.counts < b.props.counts) {
+    return 1;
+  }
+  if (a.props.counts > b.props.counts) {
+    return -1;
+  }
+  return 0;
+}
 
 export default TagManager;

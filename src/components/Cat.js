@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-// import { missionContext } from '../../pages/Rss';
+import { missionContext } from '../App';
 
 import catShock from '../assets/images/cat01-brown.png';
 import catHug from '../assets/images/cat02-brown.png';
@@ -24,7 +24,7 @@ const Cat = () => {
   const [catMove, setCatMove] = useState('');
   const [catSrc, setCatSrc] = useState(catWaiting);
   const [catStyle, setCatStyle] = useState({});
-  // const { missionEvent } = useContext(missionContext);
+  const { missionEvent } = useContext(missionContext);
 
   const catController = {
     style: {
@@ -272,19 +272,19 @@ const Cat = () => {
     async hug() {
       this.stateSwitchCheck('hug');
       this.stateClickCheck('happy', 3);
-      this.stateIgnoreCheck(['superHug'], [100], 30);
+      this.stateIgnoreCheck(['superHug'], [100], 5);
     }
 
     async superHug() {
       this.stateSwitchCheck('superHug');
       this.stateClickCheck('happy', 3);
-      this.stateIgnoreCheck(['angry', 'sad'], [34, 66], 90);
+      this.stateIgnoreCheck(['angry', 'sad'], [34, 66], 5);
     }
 
     async sad() {
       this.stateSwitchCheck('sad');
       this.stateClickCheck('happy', 3);
-      this.stateIgnoreCheck(['superSad'], [100], 90);
+      this.stateIgnoreCheck(['superSad'], [100], 5);
     }
     async superSad() {
       this.stateSwitchCheck('superSad');
@@ -306,13 +306,13 @@ const Cat = () => {
     async crazy() {
       this.stateSwitchCheck('crazy');
       this.stateIgnoreCheck(['happy'], [100], 3);
-      // missionEvent(7, 2);
+      missionEvent(7, 2);
     }
 
     async curious() {
       this.stateSwitchCheck('curious');
       this.stateClickCheck('happy', 3);
-      this.stateIgnoreCheck(['sleep', 'hug', 'excited', 'play'], [40, 20, 20, 20], 10);
+      this.stateIgnoreCheck(['sleep', 'hug', 'excited', 'play'], [40, 20, 20, 20], 5);
     }
 
     async excited() {
@@ -336,23 +336,23 @@ const Cat = () => {
     async superPlay() {
       this.stateSwitchCheck('superPlay');
       this.stateIgnoreCheck(['play'], [100], 2);
-      // missionEvent(7, 2);
+      missionEvent(7, 2);
     }
 
     async sleep() {
       this.stateSwitchCheck('sleep');
       this.stateClickCheck('happy', 3);
-      this.stateIgnoreCheck(['curious'], [100], 60);
+      this.stateIgnoreCheck(['curious'], [100], 5);
     }
   }
 
   useEffect(() => {
-    kitty = new catStateMachine('default', 2);
+    kitty = new catStateMachine('default', 1);
   }, []);
 
   const touchCat = () => {
     kitty.getClick();
-    // missionEvent(7, 1);
+    missionEvent(7, 1);
   };
 
   return (

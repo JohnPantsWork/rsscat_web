@@ -4,15 +4,19 @@ const Tagbar = ({ tagId, tagName, counts, clickEvent, liked }) => {
   return (
     <div className="tagbar">
       <div className="tagInfo">
-        <p className="tagnName">{tagName}</p>
-        <p className="tagCounts">{counts}</p>
+        {/* <p className="tagnName"></p> */}
+
         <button
           onClick={() => {
             clickEvent(tagId);
           }}
         >
-          {liked ? '取消追蹤' : '追蹤'}
+          {tagName}
         </button>
+        <p className="tagCounts">
+          <span>LV.</span>
+          {counts}
+        </p>
       </div>
     </div>
   );

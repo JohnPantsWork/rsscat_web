@@ -1,12 +1,39 @@
 .tagManager {
+  .tagController {
+    display: flex;
+    flex-direction: column;
+    .tagControllerLikedTags,
+    .tagControllerDisikedTags {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 }
-.tagbarTitle {
-  display: flex;
-  justify-content: space-between;
-}
+
 .tagbar {
+  padding: 2px;
+  margin: 3px;
+  box-shadow: 1px 1px 2px $colot_border_textarea;
+  // background-color: $colot_border_textarea;
+  border: 1px solid $color_text_misc;
+  border-radius: 3px;
   .tagInfo {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    width: 4rem;
+    border: 1px solid $color_bg_universal;
+
+    // .tagnName {
+    //   font-size: small;
+    // }
+    .tagCounts {
+      font-size: small;
+    }
+    button {
+      width: 100%;
+      font-size: small;
+    }
   }
 }

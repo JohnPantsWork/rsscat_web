@@ -1,8 +1,22 @@
-.domainManager {
+.subList {
+  box-shadow: 0 0 1px $color_text_misc;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .domainbar {
-  height: 32px;
+  font-size: smaller;
+  height: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.statistics {
+  div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
 }

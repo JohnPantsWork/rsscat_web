@@ -5,7 +5,7 @@ import Facebook from '../components/sign/Facebook';
 import Google from '../components/sign/Google';
 import '../styles/sign/sign.css';
 
-const Sign = ({ setToggleFooter }) => {
+const Sign = ({ setToggleFooter, toastEvent }) => {
   const [signUpClass, setSignUpclass] = useState(null);
   const [signInClass, setSignInclass] = useState(null);
   const [content, setContent] = useState('Signup');
@@ -14,12 +14,12 @@ const Sign = ({ setToggleFooter }) => {
   useEffect(() => {
     switch (content) {
       case 'Signin':
-        setRenderContent(<Signin />);
+        setRenderContent(<Signin toastEvent={toastEvent} />);
         setSignUpclass(null);
         setSignInclass('selected');
         break;
       default:
-        setRenderContent(<Signup />);
+        setRenderContent(<Signup toastEvent={toastEvent} />);
         setSignInclass(null);
         setSignUpclass('selected');
         break;

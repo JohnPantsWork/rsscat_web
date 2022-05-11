@@ -11,13 +11,16 @@ const MissionBlock = () => {
   const [missions, setMissions] = useState([]);
 
   useEffect(() => {
-    const missionData = JSON.parse(localStorage.getItem('missionData'));
-    setMissions(missionData.missions);
+    setInterval(() => {
+      const missionData = JSON.parse(localStorage.getItem('missionData'));
+      setMissions(missionData.missions);
+    }, []);
   }, []);
 
   return (
     <div className="block">
       <MissionTimer />
+      <hr />
       <section className="missionInfo">
         {missions.map((mission) => {
           if (mission.completed === true) {

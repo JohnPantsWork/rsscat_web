@@ -31,9 +31,36 @@
   border: 1px solid #dddddd;
   border-radius: 7.5px;
   background-color: #ffffff;
-  -webkit-box-shadow: 2px 2px 4px #dddddd;
-          box-shadow: 2px 2px 4px #dddddd;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
+          box-shadow: 2px 2px 5px #dddddd;
   overflow: hidden;
+  padding: 8px 16px;
+}
+
+.button {
+  margin: 8px 16px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px #525252;
+          box-shadow: 1px 1px 2px #525252;
+}
+
+.buttonInside {
+  margin: 8px 16px 8px 0px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px #525252;
+          box-shadow: 1px 1px 2px #525252;
+}
+
+.button:hover,
+.buttonInside:hover {
+  cursor: pointer;
+  background-color: #ffb703;
 }
 
 .rwd {

@@ -15,11 +15,12 @@ const DomainManager = () => {
     const newRssResult = await axios({
       withCredentials: true,
       method: 'POST',
-      url: `${REACT_APP_HOST}/api/1.0/rss`,
+      url: `${REACT_APP_HOST}/api/1.0/rss/domain`,
       data: {
         url: rssRegisterDomain,
       },
     });
+    console.log(`#newRssResult#`, newRssResult.data);
   };
 
   return (
@@ -35,7 +36,6 @@ const DomainManager = () => {
           <p>提交新的RSS來源</p>
           <input type="text" onChange={getRssDomain} />
           <button onClick={postNewRss}>發送申請</button>
-          <p>我們將經過安全性檢查，並確保RSS連結有效，才會真正保留RSS來源喔！</p>
         </section>
       </div>
     </div>

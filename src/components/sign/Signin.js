@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const { REACT_APP_HOST, REACT_APP_GOOGLE_ReCAPTCHA } = process.env;
 
-const Signin = () => {
+const Signin = ({ toastEvent }) => {
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
   let [reCaptcha, setReCaptcha] = useState('');
@@ -32,27 +32,28 @@ const Signin = () => {
       window.alert('請勾選我不是機器人');
       return;
     }
-    const result = await axios({
-      withCredentials: true,
-      method: 'POST',
-      url: REACT_APP_HOST + '/api/1.0/user/signIn',
-      data: {
-        provider: 0,
-        email: email,
-        password: password,
-        reCaptcha: reCaptcha,
-      },
-    });
-    const { status } = result.data.data;
-    console.log(`#--------------------[status]#\n`, status);
-    switch (status) {
-      case 2000:
-        console.log(`#登入成功#`);
-        window.location.href = '/rss';
-        break;
-      default:
-        console.log(`#登入失敗#`);
-        break;
+    try {
+      const result = await axios({
+        withCredentials: true,
+        method: 'POST',
+        url: REACT_APP_HOST + '/api/1.0/user/signIn',
+        data: {
+          provider: 0,
+          email: email,
+          password: password,
+          reCaptcha: reCaptcha,
+        },
+      });
+      const { status } = result.data.data;
+      console.log(`#登入成功#`);
+      localStorage.removeItem('missionData');
+      window.location.href = '/rss';
+    } catch {
+      console.log(`#登入失敗#`);
+      setTimeout(() => {
+        window.location.href = '/sign';
+      }, 3000);
+      toastEvent.t05();
     }
   };
   return (

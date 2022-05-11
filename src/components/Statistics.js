@@ -31,29 +31,26 @@ const Statistics = () => {
   }, []);
 
   return (
-    <div className="block">
-      <p>
-        使用者名稱：
-        <br />
-        {username}
-      </p>
-      <p>
-        註冊日期：
-        <br />
-        {signupDate}
-      </p>
-      <p>
-        喜歡文章次數：
-        <br />
-        {likedCounts}
-      </p>
+    <div className="statistics block">
+      <div>
+        <p>使用者名稱：</p>
+        <p>{username}</p>
+      </div>
+      <div>
+        <p>註冊日期：</p>
+        <p>{signupDate}</p>
+      </div>
+      <div>
+        <p>喜歡文章次數：</p>
+        <p>{likedCounts}</p>
+      </div>
+      <div>
+        <p>任務完成數：</p>
+        <p>{missionCompleted}</p>
+      </div>
+
       {/* <p>文章點擊數：<br/>{linkCounts}</p> */}
       {/* <p>點貓咪次數：<br/>{catClicked}</p> */}
-      <p>
-        任務完成數：
-        <br />
-        {missionCompleted}
-      </p>
     </div>
   );
 };

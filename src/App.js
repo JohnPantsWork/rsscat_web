@@ -49,10 +49,16 @@ const App = () => {
   const [tags, setTags] = useState([]);
 
   const toastEvent = {
-    t01: (level) => toast.success(`已移除關聯度低於${level}的標籤`),
+    t01: (level) => toast.success(`已移除關聯度0的標籤`),
     t02: () => toast.success('已訂閱所有來源'),
     t03: () => toast.success('已取消所有來源'),
     t04: (mission) => toast.success(`任務「${mission}」已完成`),
+    t05: () => toast.error(`帳號密碼錯誤，刷新頁面後重新登入`),
+    t06: () => toast.error(`註冊資料不完整，請確實填寫`),
+    t07: () => toast.error(`兩次密碼不一致`),
+    t08: () => toast.error(`信箱已被註冊`),
+    t09: () => toast.error(`請勾選機器人驗證`),
+    t10: () => toast.error(`沒有足夠的金額`),
   };
 
   const getTags = async () => {
@@ -66,8 +72,14 @@ const App = () => {
       return e.tag_name;
     });
     setTags(tagNames);
-    setLoginState(true);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('missionData') === 'null') {
+      return;
+    }
+    setLoginState(true);
+  }, []);
 
   const missionEvent = async (target, behavior) => {
     const missionData = JSON.parse(localStorage.getItem('missionData'));
@@ -77,16 +89,19 @@ const App = () => {
     }
 
     const m = missionData.missions;
+    console.log(`#m#`, m);
     for (let i = 0; i < m.length; i += 1) {
       if (m[i].mission_target_id === target && m[i].mission_behavior_id === behavior) {
         if (m[i].prograss <= m[i].volume) {
           m[i].prograss += 1;
         }
+        console.log(`##`);
 
         if (m[i].prograss > m[i].volume) {
           break;
         } else if (m[i].prograss === m[i].volume) {
           missionData.finishedCounts += 1;
+          toastEvent.t04(m[i].title);
           await axios({
             withCredentials: true,
             method: 'PATCH',
@@ -108,10 +123,10 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Home setToggleFooter={setToggleFooter} />} />
-          <Route path="/sign" element={<Sign setToggleFooter={setToggleFooter} />} />
+          <Route path="/sign" element={<Sign setToggleFooter={setToggleFooter} toastEvent={toastEvent} />} />
           <Route path="/rss" element={<Rss setToggleFooter={setToggleFooter} tags={tags} getTags={getTags} />} />
           <Route path="/manager" element={<Manager setToggleFooter={setToggleFooter} toastEvent={toastEvent} />} />
-          <Route path="/news" element={<News setToggleFooter={setToggleFooter} />} />
+          <Route path="/news" element={<News setToggleFooter={setToggleFooter} toastEvent={toastEvent} />} />
           <Route path="/tags" element={<Tags setToggleFooter={setToggleFooter} toastEvent={toastEvent} />} />
           <Route path="/cat" element={<Cat setToggleFooter={setToggleFooter} toastEvent={toastEvent} />} />
         </Routes>

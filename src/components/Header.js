@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import icon from '../assets/images/icon.jpg';
 import magnifier from '../assets/images/magnifier.png';
+import axios from 'axios';
+
+const { REACT_APP_HOST } = process.env;
 
 const Header = ({ loginState }) => {
   const searchText = (e) => {
@@ -12,6 +15,14 @@ const Header = ({ loginState }) => {
 
   const backhome = () => {
     window.location.href = '/';
+  };
+
+  const logout = async () => {
+    localStorage.setItem('missionData', null);
+    await axios({
+      method: 'POST',
+      url: REACT_APP_HOST + `/user`,
+    });
   };
   return (
     <div className="header">
@@ -28,7 +39,9 @@ const Header = ({ loginState }) => {
           <ul>
             {loginState ? (
               <li>
-                <a href="/sign">登出</a>
+                <a href="/sign" onClick={logout}>
+                  登出
+                </a>
               </li>
             ) : (
               <li>

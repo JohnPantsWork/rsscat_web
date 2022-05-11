@@ -24,8 +24,8 @@ const MissionTimer = () => {
   }, []);
   return (
     <div>
-      <p>任務倒數</p>
-      <p>{showTime}</p>
+      <h3>限時任務</h3>
+      <p>任務剩餘時間：{showTime}</p>
     </div>
   );
 };

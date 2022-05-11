@@ -35,6 +35,9 @@
         padding: 8px;
         font-size: $font_size_main;
       }
+      h1:hover {
+        cursor: pointer;
+      }
       .searchBar {
         padding: 1rem;
         position: relative;

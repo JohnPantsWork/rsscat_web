@@ -2,6 +2,7 @@
 }
 
 .storeItem {
+  width: 100%;
   display: flex;
   flex-direction: row;
   border: 1px solid black;
@@ -12,22 +13,50 @@
   img {
     width: 100px;
   }
+  div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    h3,
+    p,
+    button {
+      width: 30%;
+    }
+  }
 }
 
 .Missionbar {
-  div {
-    .g-container {
-      width: 10rem;
-      height: 1rem;
-      border-radius: 3px;
-      background: #eee;
-      border: 1px solid black;
-      overflow: hidden;
-      .g-progress {
-        height: inherit;
-        border-radius: 3px 0 0 3px;
-        background: #0f0;
-      }
+  margin: 16px 0;
+  position: relative;
+  border-radius: 3px;
+
+  .missionTtile {
+    width: 100%;
+  }
+
+  .missionReward {
+    width: 100%;
+    color: $color_main;
+    display: inline-block;
+  }
+  .g-container {
+    width: 10rem;
+    height: 1rem;
+    border-radius: 3px;
+    background: #eee;
+    border: 1px solid black;
+    overflow: hidden;
+    display: inline-block;
+    .g-progress {
+      height: inherit;
+      border-radius: 3px 0 0 3px;
+      background: #0f0;
     }
+  }
+
+  .missionState {
+    position: absolute;
+    bottom: 4px;
+    right: 4rem;
   }
 }

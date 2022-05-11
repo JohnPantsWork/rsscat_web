@@ -66,8 +66,31 @@ $footer_height_with_bar: 168px;
   border: 1px solid $colot_border_textarea;
   border-radius: 7.5px;
   background-color: $colot_bg_textarea;
-  box-shadow: 2px 2px 4px $colot_border_textarea;
+  box-shadow: 2px 2px 5px $colot_border_textarea;
   overflow: hidden;
+  padding: 8px 16px;
+}
+
+.button {
+  margin: 8px 16px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid $color_text_misc;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px $color_text_misc;
+}
+.buttonInside {
+  margin: 8px 16px 8px 0px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid $color_text_misc;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px $color_text_misc;
+}
+.button:hover,
+.buttonInside:hover {
+  cursor: pointer;
+  background-color: $color_main;
 }
 
 .rwd {

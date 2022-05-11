@@ -32,9 +32,36 @@
   border: 1px solid #dddddd;
   border-radius: 7.5px;
   background-color: #ffffff;
-  -webkit-box-shadow: 2px 2px 4px #dddddd;
-          box-shadow: 2px 2px 4px #dddddd;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
+          box-shadow: 2px 2px 5px #dddddd;
   overflow: hidden;
+  padding: 8px 16px;
+}
+
+.button {
+  margin: 8px 16px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px #525252;
+          box-shadow: 1px 1px 2px #525252;
+}
+
+.buttonInside {
+  margin: 8px 16px 8px 0px;
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px #525252;
+          box-shadow: 1px 1px 2px #525252;
+}
+
+.button:hover,
+.buttonInside:hover {
+  cursor: pointer;
+  background-color: #ffb703;
 }
 
 .rwd {
@@ -157,6 +184,10 @@
 .header .headerBox div h1 {
   padding: 8px;
   font-size: 1.5rem;
+}
+
+.header .headerBox div h1:hover {
+  cursor: pointer;
 }
 
 .header .headerBox div .searchBar {
@@ -848,35 +879,100 @@
   margin-top: 2rem;
 }
 
-.domainbar {
-  height: 32px;
+.subList {
+  -webkit-box-shadow: 0 0 1px #525252;
+          box-shadow: 0 0 1px #525252;
+  padding: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.tagbarTitle {
+.domainbar {
+  font-size: smaller;
+  height: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.statistics div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 16px;
+}
+
+.tagManager .tagController {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.tagManager .tagController .tagControllerLikedTags,
+.tagManager .tagController .tagControllerDisikedTags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.tagbar {
+  padding: 2px;
+  margin: 3px;
+  -webkit-box-shadow: 1px 1px 2px #dddddd;
+          box-shadow: 1px 1px 2px #dddddd;
+  border: 1px solid #525252;
+  border-radius: 3px;
 }
 
 .tagbar .tagInfo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: 4rem;
+  border: 1px solid #fafafa;
+}
+
+.tagbar .tagInfo .tagCounts {
+  font-size: small;
+}
+
+.tagbar .tagInfo button {
+  width: 100%;
+  font-size: small;
 }
 
 .storeItem {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -896,18 +992,57 @@
   width: 100px;
 }
 
-.Missionbar div .g-container {
+.storeItem div {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.storeItem div h3,
+.storeItem div p,
+.storeItem div button {
+  width: 30%;
+}
+
+.Missionbar {
+  margin: 16px 0;
+  position: relative;
+  border-radius: 3px;
+}
+
+.Missionbar .missionTtile {
+  width: 100%;
+}
+
+.Missionbar .missionReward {
+  width: 100%;
+  color: #ffb703;
+  display: inline-block;
+}
+
+.Missionbar .g-container {
   width: 10rem;
   height: 1rem;
   border-radius: 3px;
   background: #eee;
   border: 1px solid black;
   overflow: hidden;
+  display: inline-block;
 }
 
-.Missionbar div .g-container .g-progress {
+.Missionbar .g-container .g-progress {
   height: inherit;
   border-radius: 3px 0 0 3px;
   background: #0f0;
+}
+
+.Missionbar .missionState {
+  position: absolute;
+  bottom: 4px;
+  right: 4rem;
 }
 /*# sourceMappingURL=app.css.map */

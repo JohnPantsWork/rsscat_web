@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import NavBlock from '../components/NavBlock';
 import CatBlock from '../components/CatBlock';
 import Store from '../components/Store';
 import MissionBlock from '../components/MissionBlock';
-import { missionContext } from '../App';
 
-const Cat = ({ missions }) => {
+const Cat = ({ missions, toastEvent }) => {
   return (
     <div className="cat rwd">
       <div className="leftNav">
@@ -14,10 +13,10 @@ const Cat = ({ missions }) => {
         <CatBlock />
       </div>
       <div className="mainInfo">
-        <Store />
+        <Store toastEvent={toastEvent} />
       </div>
       <div className="RightNav">
-        <MissionBlock missions={missions} />
+        <MissionBlock missions={missions} toastEvent={toastEvent} />
       </div>
     </div>
   );

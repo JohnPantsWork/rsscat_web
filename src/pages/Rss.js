@@ -6,13 +6,14 @@ import CatBlock from '../components/CatBlock';
 import ArticleBlock from '../components/ArticleBlock';
 import NavBlock from '../components/NavBlock';
 import { missionContext } from '../App';
+import DomainManager from '../components/DomainManager';
 
 const { REACT_APP_HOST, REACT_APP_DATATYPE_ID_RSS } = process.env;
 
 let explorepage = 0;
 let currentState = 'explore';
 
-const Rss = ({ setToggleFooter, getTags, tags }) => {
+const Rss = ({ setToggleFooter, getTags, tags, toastEvent }) => {
   const [rssData, setRssData] = useState([]);
   const { missionEvent } = useContext(missionContext);
   // const [tagRecord, setTagRecord] = useState([]);
@@ -38,6 +39,7 @@ const Rss = ({ setToggleFooter, getTags, tags }) => {
 
     setRssData((curr) => curr.concat(rssArticles));
     explorepage += 1;
+    missionEvent(5, 2);
   };
 
   const getFeedRss = async () => {
@@ -127,16 +129,22 @@ const Rss = ({ setToggleFooter, getTags, tags }) => {
         <CatBlock />
       </div>
       <div className="mainInfo">
-        <button onClick={switchToExplore}>探索</button>
-        <button onClick={switchToFeed}>與你相關</button>
+        <button className="button" onClick={switchToExplore}>
+          探索
+        </button>
+        <button className="button" onClick={switchToFeed}>
+          與你相關
+        </button>
         {rssData.map((article) => {
           return <ArticleBlock key={uuidv4()} article={article} type={REACT_APP_DATATYPE_ID_RSS} />;
         })}
-        <button className="moreBtn" onClick={loadMoreArticle}>
+        <button className="moreBtn button" onClick={loadMoreArticle}>
           載入更多文章
         </button>
       </div>
-      <div className="RightNav"></div>
+      <div className="RightNav">
+        <DomainManager toastEvent={toastEvent} />
+      </div>
     </div>
   );
 };

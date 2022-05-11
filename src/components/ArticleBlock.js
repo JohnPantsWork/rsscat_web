@@ -32,6 +32,14 @@ const ArticleBlock = ({ article, type }) => {
       url: REACT_APP_HOST + `/api/1.0/record`,
       data: { tag_id_arr: [article.tag_id_1, article.tag_id_2, article.tag_id_3], data_id: article.id, datatype_id: type },
     });
+
+    if (type === '1') {
+      console.log(`#like rss#`);
+      missionEvent(3, 1);
+    } else {
+      console.log(`#like news#`);
+      missionEvent(4, 1);
+    }
   };
 
   const dislike = async () => {
@@ -47,7 +55,6 @@ const ArticleBlock = ({ article, type }) => {
   };
 
   const openNewTab = () => {
-    // console.log(`#type#`, type);
     if (type === 1 || type === '1') {
       missionEvent(1, 1);
     } else {

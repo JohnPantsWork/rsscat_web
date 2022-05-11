@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const { REACT_APP_HOST, REACT_APP_GOOGLE_ReCAPTCHA } = process.env;
 
-const Signup = () => {
+const Signup = ({ toastEvent }) => {
   let [username, setUsername] = useState('');
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
@@ -32,45 +32,49 @@ const Signup = () => {
   const userSubmit = async () => {
     if (username === null || username === '') {
       window.alert('請輸入名稱');
+      toastEvent.t06();
       return;
     }
     if (email === null || email === '') {
-      window.alert('請輸入信箱');
+      // window.alert('請輸入信箱');
+      toastEvent.t06();
       return;
     }
     if (password === null || password === '') {
-      window.alert('請輸入密碼');
+      // window.alert('請輸入密碼');
+      toastEvent.t06();
       return;
     }
     if (password !== passwordAgain) {
-      window.alert('密碼不一致');
+      // window.alert('密碼不一致');
+      toastEvent.t07();
       return;
     }
     if (reCaptcha === null || reCaptcha === '') {
-      window.alert('請勾選我不是機器人');
+      // window.alert('請勾選我不是機器人');
+      toastEvent.t09();
       return;
     }
-    const result = await axios({
-      withCredentials: true,
-      method: 'POST',
-      url: REACT_APP_HOST + '/api/1.0/user/signUp',
-      data: {
-        provider: 0,
-        username: username,
-        email: email,
-        password: password,
-        reCaptcha: reCaptcha,
-      },
-    });
-    const { status = null } = result.data.data;
-    switch (status) {
-      case 2010:
-        console.log(`#註冊成功#`);
-        window.location.href = '/rss';
-        break;
-      default:
-        console.log(`#登入失敗#`);
-        break;
+
+    try {
+      const result = await axios({
+        withCredentials: true,
+        method: 'POST',
+        url: REACT_APP_HOST + '/api/1.0/user/signUp',
+        data: {
+          provider: 0,
+          username: username,
+          email: email,
+          password: password,
+          reCaptcha: reCaptcha,
+        },
+      });
+      console.log(`#註冊成功#`);
+      localStorage.removeItem('missionData');
+      window.location.href = '/rss';
+    } catch {
+      console.log(`#登入失敗#`);
+      toastEvent.t08();
     }
   };
   return (
