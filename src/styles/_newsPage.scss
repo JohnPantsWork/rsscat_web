@@ -1,2 +1,8 @@
-.news {
+.newsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    .articleBlock {
+        width: 45%;
+    }
 }

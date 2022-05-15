@@ -1,62 +1,121 @@
+.catBlock {
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // align-items: center;
+
+    .catBlockController {
+        display: flex;
+        align-items: center;
+        p {
+            color: $color_text_category;
+            margin-right: 8px;
+        }
+        /* The switch - the box around the slider */
+    }
+    .catHouse_s {
+        height: 150px;
+
+        background-image: url('../assets/svg/Leave-100s-1440px_green.svg');
+        background-size: cover;
+
+        border: 1px solid $colot_border_textarea;
+
+        .cat {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
 .catPage {
+    .money {
+        margin: 16px 0;
+        color: $color_main;
+    }
+    .storeList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }
 
 .storeItem {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  border: 1px solid black;
-  border-radius: 3px;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  justify-content: space-around;
-  img {
-    width: 100px;
-  }
-  div {
-    width: 50%;
+    width: 48%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    h3,
-    p,
-    button {
-      width: 30%;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    img {
+        width: 150px;
     }
-  }
+    h3 {
+        margin: auto;
+    }
+    div {
+        margin-left: auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+            width: 50%;
+            margin: 8px 0;
+            color: $color_main;
+        }
+        button {
+            width: 50%;
+            margin: 16px 0;
+        }
+    }
 }
 
 .Missionbar {
-  margin: 16px 0;
-  position: relative;
-  border-radius: 3px;
-
-  .missionTtile {
-    width: 100%;
-  }
-
-  .missionReward {
-    width: 100%;
-    color: $color_main;
-    display: inline-block;
-  }
-  .g-container {
-    width: 10rem;
-    height: 1rem;
+    margin: 16px 0;
+    position: relative;
     border-radius: 3px;
-    background: #eee;
-    border: 1px solid black;
-    overflow: hidden;
-    display: inline-block;
-    .g-progress {
-      height: inherit;
-      border-radius: 3px 0 0 3px;
-      background: #0f0;
-    }
-  }
 
-  .missionState {
-    position: absolute;
-    bottom: 4px;
-    right: 4rem;
-  }
+    .missionTtile {
+        width: 100%;
+        font-size: small;
+    }
+
+    .missionReward {
+        width: 100%;
+        font-size: small;
+        display: inline-block;
+    }
+    .g-container {
+        width: 8rem;
+        height: 1rem;
+        border-radius: 3px;
+        background: #eee;
+        border: 1px solid black;
+        overflow: hidden;
+        display: inline-block;
+        .g-progress {
+            height: inherit;
+            border-radius: 3px 0 0 3px;
+            background: #2196f366;
+            .missionState {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+.missionTimer {
+    p {
+        font-size: small;
+    }
 }

@@ -1,39 +1,43 @@
 .tagManager {
-  .tagController {
-    display: flex;
-    flex-direction: column;
-    .tagControllerLikedTags,
-    .tagControllerDisikedTags {
-      display: flex;
-      flex-wrap: wrap;
+    .tagController {
+        display: flex;
+        flex-direction: column;
+        .tagControllerLikedTags,
+        .tagControllerDisikedTags {
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
-  }
 }
 
 .tagbar {
-  padding: 2px;
-  margin: 3px;
-  box-shadow: 1px 1px 2px $colot_border_textarea;
-  // background-color: $colot_border_textarea;
-  border: 1px solid $color_text_misc;
-  border-radius: 3px;
-  .tagInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-    width: 4rem;
-    border: 1px solid $color_bg_universal;
+    padding: 2px;
+    margin: 3px;
+    box-shadow: 1px 1px 2px $colot_border_textarea;
+    // background-color: $colot_border_textarea;
+    border: 1px solid $color_text_misc;
+    border-radius: 3px;
+    .tagInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        width: 4rem;
+        border: 1px solid $color_bg_universal;
 
-    // .tagnName {
-    //   font-size: small;
-    // }
-    .tagCounts {
-      font-size: small;
+        .tagCounts {
+            font-size: small;
+        }
+        button {
+            width: 100%;
+            font-size: small;
+            background-color: $color_main;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        .tagbarUnactive {
+            background-color: rgb(156, 156, 156);
+        }
     }
-    button {
-      width: 100%;
-      font-size: small;
-    }
-  }
 }

@@ -1,22 +1,41 @@
-.subList {
-  box-shadow: 0 0 1px $color_text_misc;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
+.domainManager {
+    .domainSearchBar {
+        margin: 8px 0;
+    }
+    .subList {
+        border: 0.2px solid black;
+        border-radius: 5px;
+        padding: 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        height: 60vh;
+    }
 }
 
 .domainbar {
-  font-size: smaller;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    font-size: smaller;
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
 }
 
 .statistics {
-  div {
+    div {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+    }
+}
+.rssRegister {
+    margin: 8px 0;
     display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-  }
+    flex-direction: column;
+
+    button {
+        max-width: fit-content;
+    }
 }

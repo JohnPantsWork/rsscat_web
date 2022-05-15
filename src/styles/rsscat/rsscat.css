@@ -13,9 +13,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -23,7 +20,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #fafafa;
+  background-color: #eeeeee;
 }
 
 .block {
@@ -39,12 +36,10 @@
 
 .button {
   margin: 8px 16px;
-  padding: 4px 8px;
-  background-color: white;
-  border: 1px solid #525252;
-  border-radius: 3px;
-  -webkit-box-shadow: 1px 1px 2px #525252;
-          box-shadow: 1px 1px 2px #525252;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .buttonInside {
@@ -53,14 +48,19 @@
   background-color: white;
   border: 1px solid #525252;
   border-radius: 3px;
-  -webkit-box-shadow: 1px 1px 2px #525252;
-          box-shadow: 1px 1px 2px #525252;
 }
 
 .button:hover,
 .buttonInside:hover {
   cursor: pointer;
   background-color: #ffb703;
+}
+
+.inputFilter {
+  padding: 4px 8px;
+  background-color: white;
+  border: 1px solid #525252;
+  border-radius: 3px;
 }
 
 .rwd {
@@ -81,19 +81,29 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 240px;
           flex: 0 0 240px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
 }
 
 .rwd .mainInfo {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 693.33333px;
           flex: 0 1 693.33333px;
-  scroll-snap-stop: always;
+  padding: 8px;
 }
 
 .rwd .RightNav {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 346.66667px;
           flex: 0 1 346.66667px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -123,6 +133,62 @@
   }
   .rwd .RightNav {
     display: none;
+  }
+}
+
+.rwdTwoColumn {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1280px;
+          flex: 0 1 1280px;
+  width: 100%;
+  max-width: 1280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rwdTwoColumn .leftNav {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 240px;
+          flex: 0 0 240px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
+}
+
+.rwdTwoColumn .mainInfo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 1040px;
+          flex: 0 1 1040px;
+  scroll-snap-stop: always;
+}
+
+@media screen and (max-width: 1024px) {
+  .rwdTwoColumn .leftNav {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 240px;
+            flex: 0 1 240px;
+  }
+  .rwdTwoColumn .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 784px;
+            flex: 0 1 784px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rwdTwoColumn .leftNav {
+    display: none;
+  }
+  .rwdTwoColumn .mainInfo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 768px;
+            flex: 0 1 768px;
   }
 }
 

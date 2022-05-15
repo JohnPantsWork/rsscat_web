@@ -12,7 +12,7 @@ $color_main: #ffb703;
 $color_main_text: #f9f9f9;
 $colot_bg_textarea: #ffffff;
 $colot_border_textarea: #dddddd;
-$color_bg_universal: #fafafa;
+$color_bg_universal: #eeeeee;
 $color_text_title_main: #090909;
 $color_text_title_common: #171717;
 $color_text_category: #242424;
@@ -44,96 +44,147 @@ $footer_height_normal: 112px;
 $footer_height_with_bar: 168px;
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Noto Sans TC', sans-serif;
-  color: $color_text_common;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: $color_text_common;
 }
 
 #root {
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  background-color: $color_bg_universal;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    background-color: $color_bg_universal;
 }
 
 .block {
-  margin: 8px 16px;
-  border: 1px solid $colot_border_textarea;
-  border-radius: 7.5px;
-  background-color: $colot_bg_textarea;
-  box-shadow: 2px 2px 5px $colot_border_textarea;
-  overflow: hidden;
-  padding: 8px 16px;
+    margin: 8px 16px;
+    border: 1px solid $colot_border_textarea;
+    border-radius: 7.5px;
+    background-color: $colot_bg_textarea;
+    box-shadow: 2px 2px 5px $colot_border_textarea;
+    overflow: hidden;
+    padding: 8px 16px;
 }
 
 .button {
-  margin: 8px 16px;
-  padding: 4px 8px;
-  background-color: white;
-  border: 1px solid $color_text_misc;
-  border-radius: 3px;
-  box-shadow: 1px 1px 2px $color_text_misc;
+    margin: 8px 16px;
+    padding: 8px 16px;
+    // background-color: white;
+    // border: 1px solid $color_text_misc;
+    border: none;
+    border-radius: 5px;
+    // box-shadow: 1px 1px 2px $color_text_misc;
+    font-size: 1rem;
 }
 .buttonInside {
-  margin: 8px 16px 8px 0px;
-  padding: 4px 8px;
-  background-color: white;
-  border: 1px solid $color_text_misc;
-  border-radius: 3px;
-  box-shadow: 1px 1px 2px $color_text_misc;
+    margin: 8px 16px 8px 0px;
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid $color_text_misc;
+    border-radius: 3px;
+    // box-shadow: 0.5px 0.5px 1px $color_text_misc;
 }
 .button:hover,
 .buttonInside:hover {
-  cursor: pointer;
-  background-color: $color_main;
+    cursor: pointer;
+    background-color: $color_main;
+}
+
+.inputFilter {
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid $color_text_misc;
+    // border: 2px solid $color_main;
+    border-radius: 3px;
 }
 
 .rwd {
-  flex: 0 1 $width_boundry_1;
-  width: 100%;
-  max-width: $width_boundry_1;
+    flex: 0 1 $width_boundry_1;
+    width: 100%;
+    max-width: $width_boundry_1;
 
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-  .leftNav {
-    flex: 0 0 240px;
-    // margin: 16px 8px 0 16px;
-  }
-  .mainInfo {
-    flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 2;
-    scroll-snap-stop: always;
-    // margin: 16px 8px 0 8px;
-  }
-  .RightNav {
-    flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 1;
-    // margin: 16px 16px 0 8px;
-  }
-  @media screen and (max-width: $width_boundry_2) {
     .leftNav {
-      flex: 0 1 240px;
+        flex: 0 0 240px;
+        align-self: flex-start;
+        position: sticky;
+        top: 64px;
     }
     .mainInfo {
-      flex: 0 1 ($width_boundry_2 - 240px);
+        flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 2;
+        padding: 8px;
     }
     .RightNav {
-      display: none;
+        flex: 0 1 ($width_boundry_1 - 240px)/ 3 * 1;
+        align-self: flex-start;
+        position: sticky;
+        top: 64px;
     }
-  }
-  @media screen and (max-width: $width_boundry_3) {
+    @media screen and (max-width: $width_boundry_2) {
+        .leftNav {
+            flex: 0 1 240px;
+        }
+        .mainInfo {
+            flex: 0 1 ($width_boundry_2 - 240px);
+        }
+        .RightNav {
+            display: none;
+        }
+    }
+    @media screen and (max-width: $width_boundry_3) {
+        .leftNav {
+            display: none;
+        }
+        .mainInfo {
+            flex: 0 1 ($width_boundry_3);
+        }
+        .RightNav {
+            display: none;
+        }
+    }
+}
+
+.rwdTwoColumn {
+    flex: 0 1 $width_boundry_1;
+    width: 100%;
+    max-width: $width_boundry_1;
+
+    display: flex;
+    justify-content: center;
+
     .leftNav {
-      display: none;
+        flex: 0 0 240px;
+        // margin: 16px 8px 0 16px;
+        align-self: flex-start;
+        position: sticky;
+        top: 64px;
     }
     .mainInfo {
-      flex: 0 1 ($width_boundry_3);
+        flex: 0 1 ($width_boundry_1 - 240px);
+        scroll-snap-stop: always;
+        // margin: 16px 8px 0 8px;
     }
-    .RightNav {
-      display: none;
+    @media screen and (max-width: $width_boundry_2) {
+        .leftNav {
+            flex: 0 1 240px;
+        }
+        .mainInfo {
+            flex: 0 1 ($width_boundry_2 - 240px);
+        }
     }
-  }
+    @media screen and (max-width: $width_boundry_3) {
+        .leftNav {
+            display: none;
+        }
+        .mainInfo {
+            flex: 0 1 ($width_boundry_3);
+        }
+    }
 }
