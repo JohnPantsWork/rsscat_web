@@ -15,7 +15,6 @@ const StoreItem = ({ style, title, price, purchased, toastEvent }) => {
             });
             switchStyle();
         } catch (err) {
-            console.log(`#err#`, err);
             toastEvent.t10();
         }
     };
@@ -29,7 +28,7 @@ const StoreItem = ({ style, title, price, purchased, toastEvent }) => {
             });
             window.location.href = '/cat';
         } catch (err) {
-            console.log(`#err#`, err);
+            console.error(err);
         }
     };
     return (

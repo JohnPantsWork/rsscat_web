@@ -3,7 +3,6 @@ import React from 'react';
 const Switcher = ({ onEvent, offevent, defaultValue }) => {
     const toggleSwitch = (e) => {
         const state = e.target.checked;
-        console.log(`#state#`, state);
         if (state === true) {
             onEvent();
         } else {

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import NavBlock from '../components/NavBlock';
 import CatBlock from '../components/CatBlock';
 import Store from '../components/Store';

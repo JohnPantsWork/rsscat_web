@@ -171,9 +171,8 @@ const Cat = ({ toastEvent, loginState }) => {
                     timeout: 1000,
                 });
             } catch (err) {
-                console.log('test cat');
                 catStateResult = {
-                    data: { data: { latest_login: new Date().getTime(), latest_style: 'pink' } },
+                    data: { data: { latest_login: new Date().getTime(), latest_style: 'ghost' } },
                 };
             }
 

@@ -20,9 +20,7 @@ const NavBlock = () => {
     useEffect(() => {
         setCurrentLocation(window.location.pathname);
     }, []);
-    useEffect(() => {
-        console.log(`#currentLocation#`, currentLocation);
-    }, [currentLocation]);
+    useEffect(() => {}, [currentLocation]);
     return (
         <div className="navigationBlock">
             <nav>

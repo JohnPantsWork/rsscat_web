@@ -25,7 +25,7 @@ const Domainbar = ({ rssId, title, setLikedDomains, defaultValue, loginState }) 
         );
         await axios({
             withCredentials: true,
-            method: 'DELETE',
+            method: 'PATCH',
             url: `${REACT_APP_HOST}/api/1.0/user/domain`,
             data: { dislikedDomainId: rssId },
         });
@@ -34,7 +34,13 @@ const Domainbar = ({ rssId, title, setLikedDomains, defaultValue, loginState }) 
     return (
         <div className="domainbar">
             <p>{title}</p>
-            {loginState ? <Switcher onEvent={submitDomain} offevent={unsubmitDomain} defaultValue={defaultValue} /> : null}
+            {loginState ? (
+                <Switcher
+                    onEvent={submitDomain}
+                    offevent={unsubmitDomain}
+                    defaultValue={defaultValue}
+                />
+            ) : null}
         </div>
     );
 };

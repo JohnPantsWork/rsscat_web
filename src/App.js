@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Header from './components/Header';
 
-import Sign from './pages/Sign2';
+import Sign from './pages/Sign';
 import Rss from './pages/Rss';
 import News from './pages/News';
 import Manager from './pages/Manager';
@@ -38,7 +38,7 @@ const missionInit = async () => {
         });
         const missionResult = rawMissionResult.data.data;
         const hasMission = localStorage.getItem('missionData');
-        if (hasMission !== null && !missionResult.renew) {
+        if (hasMission !== null && missionResult.missionNeedRenew === false) {
             return;
         }
         const missions = missionResult.missionList.map((mission) => {
@@ -68,14 +68,20 @@ const App = () => {
         t02: () => toast.success('已訂閱所有來源'),
         t03: () => toast.success('已取消所有來源'),
         t04: (mission) => toast.success(`任務「${mission}」已完成`),
-        t05: () => toast.error(`帳號密碼錯誤，刷新頁面後重新登入`),
+        t05: () => toast.error(`信箱或密碼錯誤，刷新頁面後重新登入`),
         t06: () => toast.error(`註冊資料不完整，請確實填寫`),
         t07: () => toast.error(`兩次密碼不一致`),
-        t08: () => toast.error(`信箱已被註冊`),
+        t08: () => toast.error(`無法註冊帳號，請稍後再試`),
         t09: () => toast.error(`請勾選機器人驗證`),
         t10: () => toast.error(`沒有足夠的金額`),
         t11: () => toast.info(`登入後才能與貓咪互動喔！`),
         t12: () => toast.info(`請先登入`),
+        t13: () => toast.error(`請輸入名稱，長度介於3-30個字元之間`),
+        t14: () => toast.error(`請填寫正確的信箱，長度不得超過30個字元`),
+        t15: () => toast.error(`請填寫正確的密碼，長度介於3-30個字元之間`),
+        t16: () => toast.info(`註冊中，請稍候。`),
+        t17: () => toast.info(`登入中，請稍候`),
+        t18: () => toast.error(`信箱密碼不能為空`),
     };
 
     const getTags = async () => {
@@ -95,7 +101,6 @@ const App = () => {
         (async () => {
             const loginState = await userSignInCheck();
             if (loginState) {
-                console.log(`#loginState#`, loginState);
                 missionInit();
             }
             setLoginState(loginState);
@@ -125,7 +130,7 @@ const App = () => {
                         withCredentials: true,
                         method: 'PATCH',
                         url: REACT_APP_HOST + `/api/1.0/cat/mission`,
-                        data: { completed: m[i].id },
+                        data: { completedMissionId: m[i].id },
                     });
                     break;
                 }

@@ -46,7 +46,7 @@ const Rss = ({ getTags, tags, toastEvent, loginState }) => {
     const getFeedRss = async () => {
         let rssResult = await axios({
             withCredentials: true,
-            url: REACT_APP_HOST + `/api/1.0/rss/user?paging=${explorepage}`,
+            url: REACT_APP_HOST + `/api/1.0/user/rss?paging=${explorepage}`,
             method: 'GET',
             data: { tags: tags },
         });
@@ -54,7 +54,7 @@ const Rss = ({ getTags, tags, toastEvent, loginState }) => {
             explorepage = 0;
             rssResult = await axios({
                 withCredentials: true,
-                url: REACT_APP_HOST + `/api/1.0/rss/user?paging=${explorepage}`,
+                url: REACT_APP_HOST + `/api/1.0/user/rss?paging=${explorepage}`,
                 method: 'GET',
             });
         }
@@ -75,20 +75,6 @@ const Rss = ({ getTags, tags, toastEvent, loginState }) => {
         }
     };
 
-    // const getTags = async () => {
-    //   console.log(`#getTags#`);
-    //   const result = await axios({
-    //     withCredentials: true,
-    //     method: 'GET',
-    //     url: REACT_APP_HOST + `/api/1.0/user/tag`,
-    //   });
-    //   const realTags = result.data.data.likeTags;
-    //   const tagNames = realTags.map((e) => {
-    //     return e.tag_name;
-    //   });
-    //   setTags(tagNames);
-    // };
-
     const switchToExplore = async () => {
         explorepage = 0;
         currentState = 'explore';
@@ -102,19 +88,6 @@ const Rss = ({ getTags, tags, toastEvent, loginState }) => {
         setRssData([]);
         getFeedRss();
     };
-
-    // const getTagRecord = async () => {
-    //   // await getTags();
-    //   setTags(userData.tags);
-    //   const tagsResult = await axios({
-    //     withCredentials: true,
-    //     method: 'GET',
-    //     url: REACT_APP_HOST + `/api/1.0/record`,
-    //   });
-    //   const tags = tagsResult.data.data;
-
-    //   await setTagRecord(tags);
-    // };
 
     useEffect(() => {
         (async () => {

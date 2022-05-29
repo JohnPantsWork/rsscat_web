@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import StoreItem from './StoreItem';
-import StoreMission from './Missionbar';
 
 const { REACT_APP_HOST } = process.env;
 
@@ -17,10 +16,15 @@ const Store = ({ toastEvent, loginState }) => {
             method: 'GET',
             url: REACT_APP_HOST + `/api/1.0/cat/store`,
         });
+        console.log(`#result#`, result.data.data);
         setPurchased(result.data.data.purchased);
         setItems(result.data.data.store);
         setCoins(result.data.data.coins);
     };
+
+    // useEffect(() => {
+    //     getStoreInfo();
+    // }, [loginState]);
 
     useEffect(() => {
         getStoreInfo();
@@ -33,7 +37,7 @@ const Store = ({ toastEvent, loginState }) => {
             <section className="storeList">
                 {items.map((item) => {
                     if (item.title === 'ghost') {
-                        return;
+                        return null;
                     }
                     return (
                         <StoreItem

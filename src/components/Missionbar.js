@@ -1,5 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { missionContext } from '../App';
+import React, { useEffect, useState } from 'react';
 
 const Missionbar = ({ title, reward, prograss, volume }) => {
     const [realTimePrograss, setRealTimePrograss] = useState(prograss);

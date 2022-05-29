@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Domainbar from './Domainbar';
 
 const { REACT_APP_HOST } = process.env;
-const ITEM_PER_PAGE = 10;
 
 const Rssmanager = ({ toastEvent, loginState }) => {
     // realtime list state
@@ -35,9 +34,9 @@ const Rssmanager = ({ toastEvent, loginState }) => {
     const submitDomain = async (sumbitAll) => {
         const result = await axios({
             withCredentials: true,
-            method: 'PATCH',
+            method: 'PUT',
             url: `${REACT_APP_HOST}/api/1.0/user/domain`,
-            data: { sumbitAll: sumbitAll },
+            data: { sumbitAll },
         });
         setLikedDomains(result.data.data);
     };

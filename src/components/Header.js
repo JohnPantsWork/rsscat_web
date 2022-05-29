@@ -13,7 +13,7 @@ const Header = ({ loginState }) => {
         await axios({
             withCredentials: true,
             method: 'POST',
-            url: REACT_APP_HOST + `/api/1.0/user/signOut`,
+            url: REACT_APP_HOST + `/api/1.0/user/signout`,
         });
     };
     return (

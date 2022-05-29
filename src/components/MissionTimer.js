@@ -6,25 +6,32 @@ const MissionTimer = ({ loginState }) => {
     const [showTime, setShowTime] = useState('');
 
     useEffect(() => {
-        if (!loginState) {
-            return;
-        }
-
-        const rawMissionData = localStorage.getItem('missionData');
-        if (rawMissionData === null) {
-            return;
-        }
-        const missionData = JSON.parse(rawMissionData);
-        const date = new Date(missionData.date).getTime();
-        const ttl = missionData.ttl;
-        timer = date + ttl - new Date().getTime();
-        setInterval(() => {
-            timer = timer - 1000;
-            setShowTime(msToTime(timer));
-            if (timer < 0) {
-                localStorage.removeItem('missionData');
+        // delay one second for session data ready.
+        setTimeout(() => {
+            if (!loginState) {
+                return;
             }
-        }, 1000);
+            let tryAgain = true;
+
+            const rawMissionData = localStorage.getItem('missionData');
+            if (rawMissionData === null) {
+                return;
+            }
+
+            const missionData = JSON.parse(rawMissionData);
+            const date = new Date(missionData.date).getTime();
+            const ttl = missionData.ttl;
+
+            timer = date + ttl - new Date().getTime();
+            console.log(`#timer#`, timer);
+            setInterval(() => {
+                timer = timer - 1000;
+                setShowTime(msToTime(timer));
+                if (timer < 0) {
+                    localStorage.removeItem('missionData');
+                }
+            }, 1000);
+        }, 500);
     }, []);
     return (
         <div className="missionTimer">

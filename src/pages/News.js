@@ -44,7 +44,7 @@ const News = ({ getTags, tags, toastEvent, loginState }) => {
         let newsResult;
         newsResult = await axios({
             withCredentials: true,
-            url: REACT_APP_HOST + `/api/1.0/news/user?paging=${explorepage}`,
+            url: REACT_APP_HOST + `/api/1.0/user/news?paging=${explorepage}`,
             method: 'GET',
             data: { tags: tags },
         });
@@ -52,7 +52,7 @@ const News = ({ getTags, tags, toastEvent, loginState }) => {
             explorepage = 0;
             newsResult = await axios({
                 withCredentials: true,
-                url: REACT_APP_HOST + `/api/1.0/news/user?paging=${explorepage}`,
+                url: REACT_APP_HOST + `/api/1.0/user/news?paging=${explorepage}`,
                 method: 'GET',
             });
         }

@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 const { REACT_APP_HOST } = process.env;
 
 const TagManager = ({ toastEvent, loginState }) => {
-    const [tagCounts, setTagCounts] = useState(0);
     const [likedTags, setLikedTags] = useState([]);
     const [dislikedTags, setDislikedTags] = useState([]);
 
@@ -21,7 +20,6 @@ const TagManager = ({ toastEvent, loginState }) => {
         });
 
         setLikedTags(result.data.data.likeTags);
-        setTagCounts(result.data.data.likeTags.length);
         setDislikedTags(result.data.data.dislikeTags);
     };
 
@@ -53,17 +51,17 @@ const TagManager = ({ toastEvent, loginState }) => {
         removeTag: async (id) => {
             const result = await axios({
                 withCredentials: true,
-                method: 'DELETE',
+                method: 'PATCH',
                 url: REACT_APP_HOST + `/api/1.0/user/tag`,
                 data: { dislikedTags: [id] },
             });
             renderTags(result.data.data.likeTags);
         },
-        removeNoneAssociate: async () => {
+        removeNoneAssociate: async (associateLevel = 0) => {
             const result = await axios({
                 withCredentials: true,
-                method: 'DELETE',
-                url: REACT_APP_HOST + `/api/1.0/user/tag?associate=0`,
+                method: 'PATCH',
+                url: REACT_APP_HOST + `/api/1.0/user/tag?associateLevel=${associateLevel}`,
             });
 
             renderTags(result.data.data.likeTags);
@@ -73,21 +71,17 @@ const TagManager = ({ toastEvent, loginState }) => {
 
     const renderTags = (likedTags) => {
         likedTags = likedTags.map((tag) => {
-            console.log(`#tag#`, tag);
             tag['tag_id'] = tag.id;
             tag['counts'] = recordDict[tag.id] !== undefined ? recordDict[tag.id].counts : 0;
             return tag;
         });
-        console.log(`#likedTags#`, likedTags);
         setLikedTags(likedTags);
 
         const likedArray = arrayObjValue(likedTags);
         const dislikedTags = record.filter((tag) => {
-            console.log(`#filter tag#`, tag);
             tag['id'] = tag.tag_id;
             return likedArray.indexOf(tag.tag_id) === -1;
         });
-        console.log(`#dislikedTags#`, dislikedTags);
         setDislikedTags(dislikedTags);
     };
 
