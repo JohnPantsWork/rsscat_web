@@ -1,4 +1,4 @@
-import icon from '../assets/images/icon.jpg';
+import icon from '../assets/images/icon.svg';
 import axios from 'axios';
 
 const { REACT_APP_HOST } = process.env;
