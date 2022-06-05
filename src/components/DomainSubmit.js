@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const { REACT_APP_HOST } = process.env;
 
-const DomainSubmit = () => {
+const DomainSubmit = ({ toastEvent }) => {
     const [rssRegisterDomain, setRssRegisterDomain] = useState([]);
 
     const getRssDomain = (e) => {
@@ -12,14 +12,37 @@ const DomainSubmit = () => {
     };
 
     const postNewRss = async () => {
-        await axios({
-            withCredentials: true,
-            method: 'POST',
-            url: `${REACT_APP_HOST}/api/1.0/rss/domain`,
-            data: {
-                url: rssRegisterDomain,
-            },
-        });
+        try {
+            if (rssRegisterDomain === '') {
+                toastEvent.t26();
+                return;
+            }
+            toastEvent.t19();
+            await axios({
+                withCredentials: true,
+                method: 'POST',
+                url: `${REACT_APP_HOST}/api/1.0/rss/domain`,
+                data: {
+                    url: rssRegisterDomain,
+                },
+            });
+            toastEvent.t20();
+        } catch (err) {
+            const response = err.response.data.error.internalStatusCode || null;
+            if (response === 4201) {
+                toastEvent.t12();
+            } else if (response === 4501) {
+                toastEvent.t25();
+            } else if (response === 4502) {
+                toastEvent.t21();
+            } else if (response === 4503) {
+                toastEvent.t24();
+            } else if (response === 4504) {
+                toastEvent.t22();
+            } else if (response === 4505) {
+                toastEvent.t22();
+            }
+        }
     };
 
     return (

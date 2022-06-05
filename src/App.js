@@ -82,6 +82,14 @@ const App = () => {
         t16: () => toast.info(`註冊中，請稍候。`),
         t17: () => toast.info(`登入中，請稍候`),
         t18: () => toast.error(`信箱密碼不能為空`),
+        t19: () => toast.info(`已發送請求，請稍候`),
+        t20: () => toast.success(`驗證成功，此RSS的URL已加入更新清單。`),
+        t21: () => toast.error(`驗證失敗，這可能是一個不安全的URL。`),
+        t22: () => toast.error(`驗證失敗，該RSS不符合網站的更新要求。`),
+        t23: () => toast.error(`此信箱已存在，請使用另一個信箱。`),
+        t24: () => toast.error(`驗證失敗，這不是一個有效的RSS訂閱URL。`),
+        t25: () => toast.error(`此RSS網址已經存在。`),
+        t26: () => toast.info(`URL不能為空`),
     };
 
     const getTags = async () => {

@@ -18,7 +18,7 @@ const Manager = ({ toastEvent, loginState }) => {
                 <DomainManager toastEvent={toastEvent} loginState={loginState} />
             </div>
             <div className="RightNav">
-                <DomainSubmit />
+                <DomainSubmit toastEvent={toastEvent} />
             </div>
         </div>
     );

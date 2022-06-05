@@ -31,7 +31,6 @@ const Signup = ({ toastEvent }) => {
     };
 
     const userSubmit = async () => {
-        console.log(`#submiting#`);
         if (username === null || username === '' || email.length > 30) {
             toastEvent.t12();
             return;
@@ -40,6 +39,7 @@ const Signup = ({ toastEvent }) => {
         if (
             email === null ||
             email === '' ||
+            email.length < 3 ||
             email.length > 30 ||
             email.includes('@' && '.') === false ||
             email.indexOf('@') > email.indexOf('.')
@@ -48,7 +48,7 @@ const Signup = ({ toastEvent }) => {
             return;
         }
 
-        if (password === null || password === '') {
+        if (password === null || password === '' || email.length < 3 || email.length > 30) {
             toastEvent.t15();
             return;
         }
@@ -62,11 +62,8 @@ const Signup = ({ toastEvent }) => {
             toastEvent.t09();
             return;
         }
-        console.log(`#fbegin#`);
         try {
-            console.log(`#1#`);
             toastEvent.t16();
-            console.log(`#2#`);
             await axios({
                 withCredentials: true,
                 method: 'POST',
@@ -79,17 +76,18 @@ const Signup = ({ toastEvent }) => {
                     reCaptcha: reCaptcha,
                 },
             });
-            console.log(`#3#`);
             localStorage.removeItem('missionData');
-            console.log(`#4#`);
             window.location.href = '/rss';
-        } catch {
+        } catch (err) {
             setTimeout(() => {
                 window.location.href = '/sign';
             }, 3000);
+            if (err.response.data.error.internalStatusCode === 4105) {
+                toastEvent.t23();
+                return;
+            }
             toastEvent.t08();
         }
-        console.log(`#final#`);
     };
     return (
         <div className="signup">
