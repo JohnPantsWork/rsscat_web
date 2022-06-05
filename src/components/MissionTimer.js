@@ -23,7 +23,6 @@ const MissionTimer = ({ loginState }) => {
             const ttl = missionData.ttl;
 
             timer = date + ttl - new Date().getTime();
-            console.log(`#timer#`, timer);
             setInterval(() => {
                 timer = timer - 1000;
                 setShowTime(msToTime(timer));

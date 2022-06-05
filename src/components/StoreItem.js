@@ -27,9 +27,7 @@ const StoreItem = ({ style, title, price, purchased, toastEvent }) => {
                 data: { catStyle: title },
             });
             window.location.href = '/cat';
-        } catch (err) {
-            console.error(err);
-        }
+        } catch (err) {}
     };
     return (
         <div className="storeItem">

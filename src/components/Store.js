@@ -16,7 +16,6 @@ const Store = ({ toastEvent, loginState }) => {
             method: 'GET',
             url: REACT_APP_HOST + `/api/1.0/cat/store`,
         });
-        console.log(`#result#`, result.data.data);
         setPurchased(result.data.data.purchased);
         setItems(result.data.data.store);
         setCoins(result.data.data.coins);
